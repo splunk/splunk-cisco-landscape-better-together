@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import MyComponent from './InfoTile';
-import ReactDOM from 'react-dom';
-import { nodes, links } from './graphData';
+import { createRoot } from 'react-dom/client';
+import './App.css'
 
-const GraphComponent = ({ data }) => {
+const GraphComponent = ({ data, generateTree }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -25,8 +25,9 @@ const GraphComponent = ({ data }) => {
     // Add group with transform to center it
     const vis = svg.append('g')
       .attr('transform', `translate(${width * 0.05}, ${height * 0.05})`);
+
     console.log(vis.node().getBoundingClientRect());
-    
+
     // Calculate node positions
     const nodesInLevels = data.nodes.reduce((acc, node) => {
       if (!acc[node.level]) {
@@ -35,32 +36,33 @@ const GraphComponent = ({ data }) => {
       acc[node.level].push(node);
       return acc;
     }, []);
-    let widthLevelEnd = width*0.1;
-    let heightNodeEnd = height*0.1;
+
+    let widthLevelEnd = width * 0.1;
+    let heightNodeEnd = height * 0.1;
     const levelWidth = 400; // Adjust this value to set the horizontal gap between levels
     const levelHeight = 50; // Adjust this value to set the vertical gap between levels
     console.log(nodesInLevels);
     nodesInLevels.forEach((nodes, i) => {
-      if(i === 0 || i === nodesInLevels.length - 1) {
-        heightNodeEnd = height*0.1;
+      if (i === 0 || i === nodesInLevels.length - 1) {
+        heightNodeEnd = height * 0.1;
         nodes.forEach((node) => {
-          node.x = (i ===0 ?widthLevelEnd : widthLevelEnd + levelWidth);
+          node.x = (i === 0 ? widthLevelEnd : widthLevelEnd + levelWidth);
           node.y = heightNodeEnd;
         });
-      }else if(i !== 1 && i !== nodesInLevels.length - 2) {
-        heightNodeEnd = height*0.1;
+      } else if (i !== 1 && i !== nodesInLevels.length - 2) {
+        heightNodeEnd = height * 0.1;
         nodes.forEach((node, k) => {
           node.x = widthLevelEnd + levelWidth;
-          node.y = heightNodeEnd + (k ===0 ? 0 :levelHeight);
+          node.y = heightNodeEnd + (k === 0 ? 0 : levelHeight);
           heightNodeEnd = node.y + node.length;
         });
-        heightNodeEnd = height*0.1;
+        heightNodeEnd = height * 0.1;
         widthLevelEnd = nodes[nodes.length - 1].x + nodes[nodes.length - 1].width;
-      }else if(i === 1 || i === nodesInLevels.length - 2) {
-        heightNodeEnd = height*0.15;
+      } else if (i === 1 || i === nodesInLevels.length - 2) {
+        heightNodeEnd = height * 0.15;
         nodes.forEach((node, j) => {
-          node.x = (i ===1 ?widthLevelEnd : widthLevelEnd + levelWidth);
-          node.y = heightNodeEnd + (j ===0 ? 0 :levelHeight);
+          node.x = (i === 1 ? widthLevelEnd : widthLevelEnd + levelWidth);
+          node.y = heightNodeEnd + (j === 0 ? 0 : levelHeight);
           heightNodeEnd = node.y + node.length;
         });
       }
@@ -80,39 +82,41 @@ const GraphComponent = ({ data }) => {
     const nodeEnter = nodes.enter().append('g').attr('class', 'node')
       .attr('transform', d => `translate(${d.x}, ${d.y})`);
 
-    nodeEnter.each(function(d) {
+    nodeEnter.each(function (d) {
       if (d.level !== nodesInLevels.length - 2) {
         console.log('Rendering node:', d.name, 'Level:', d.level);
-      const node = d3.select(this);
-      const foreignObject = node.append('foreignObject')
-        .attr('width', d.width)
-        .attr('height', d.length)
-        .node();
+        const node = d3.select(this);
+        const foreignObject = node.append('foreignObject')
+          .attr('width', d.width)
+          .attr('height', d.length)
+          .node();
 
-      ReactDOM.render(<MyComponent data={d} />, foreignObject);
+        const root = createRoot(foreignObject);
+        root.render(<MyComponent data={d} />);
       }
     });
-    nodeEnter.each(function(d) {
+    nodeEnter.each(function (d) {
       if (d.level === nodesInLevels.length - 2) {
         console.log('Rendering node:', d.name, 'Level:', d.level);
-      const node = d3.select(this);
-      const foreignObject = node.append('foreignObject')
-        .attr('width', d.width)
-        .attr('height', d.length)
-        .node();
+        const node = d3.select(this);
+        const foreignObject = node.append('foreignObject')
+          .attr('width', d.width)
+          .attr('height', d.length)
+          .node();
 
-      ReactDOM.render(<MyComponent data={d} />, foreignObject);
+        const root = createRoot(foreignObject);
+        root.render(<MyComponent data={d} />);
       }
     });
-    
-
-    
   }, [data]);
+
   return (
-    <svg ref={ref}></svg>
+    <>
+      <h1>Cisco + Splunk</h1>
+      <button className='btn-generate-tree' onClick={generateTree}>Generate Landscape</button>
+      <svg id='landscape-svg' ref={ref}/>
+    </>
   );
 };
-
-
 
 export default GraphComponent;

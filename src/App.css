@@ -47,6 +47,7 @@ body, html, #root {
 .App {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -73,3 +74,18 @@ body, html, #root {
   z-index: -1;  /* Low z-index to appear below */
 }
 
+.btn-generate-tree {
+  width: 155px;
+  height: 33px;
+  background-color: #0499d0;
+  border: none;
+  border-radius: 3px;
+  color: #ffff;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.btn-generate-tree:hover {
+  background-color: rgba(4,153,208, 0.8);
+  cursor: pointer;
+}

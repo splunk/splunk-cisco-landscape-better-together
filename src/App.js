@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import GraphComponent from './GraphComponent';
-import { links, nodes } from './graphData';
+// import { links, nodes } from './graphData';
+import { readCSVFile } from './utils/file';
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState({ nodes: [], links: [] })
+
+  useEffect(() => {
+    generateTree()
+  }, [])
+
+  const generateTree = async () => {
+    setIsLoading(true)
+    const data = await readCSVFile()
+    setData(data)
+    setIsLoading(false)
+
+  }
+
   return (
-    <div className="App">
-      <GraphComponent data={{nodes, links}} />
-    </div>
+    isLoading ? <div>...Loading</div> :
+      <div className="App">
+        <GraphComponent data={data} generateTree={generateTree} />
+        {/* <GraphComponent data={{links: links, nodes: nodes}} generateTree={generateTree} /> */}
+      </div>
   );
 }
 

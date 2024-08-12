@@ -32,12 +32,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-body, html, #root {
+body,
+html,
+#root {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -55,23 +58,28 @@ body, html, #root {
 }
 
 .overlay-underlay {
-  position: fixed;  /* Position fixed to cover the viewport */
+  position: fixed;
+  /* Position fixed to cover the viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);  /* Semi-transparent black background */
-  pointer-events: none;  /* Prevent interaction with elements underneath */
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black background */
+  pointer-events: none;
+  /* Prevent interaction with elements underneath */
 }
 
 /* Modifier class to make it an overlay (on top) */
 .overlay-underlay--overlay {
-  z-index: 1000;  /* High z-index to appear on top */
+  z-index: 1000;
+  /* High z-index to appear on top */
 }
 
 /* Modifier class to make it an underlay (below) */
 .overlay-underlay--underlay {
-  z-index: -1;  /* Low z-index to appear below */
+  z-index: -1;
+  /* Low z-index to appear below */
 }
 
 .btn-generate-tree {
@@ -86,6 +94,71 @@ body, html, #root {
 }
 
 .btn-generate-tree:hover {
-  background-color: rgba(4,153,208, 0.8);
+  background-color: rgba(4, 153, 208, 0.8);
   cursor: pointer;
+}
+
+.tiles-overview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 45%;
+  column-gap: 2.5rem;
+}
+
+.info-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 180px;
+  width: 230px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 13px 1px 9px -4px rgba(184, 184, 184, 0.57);
+}
+
+.info-card-container p {
+  margin: 0;
+}
+
+.header-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  height: 70px;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding-bottom: 0.2rem;
+}
+
+.card-title {
+  position: relative;
+  top: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(62, 62, 62);
+  margin-block-start: 0;
+  margin-block-end: 0;
+
+  transition: 0.7s ease-out allow-discrete;
+  transform: translateY(0);
+}
+
+.card-title:hover {
+  cursor: pointer;
+  color: rgba(62, 62, 62, 0.8);
+}
+
+.card-title.open {
+  transform: translateY(-75px);
+  color: #ffffff;
+}
+
+p.description {
+  font-size: 13px;
 }

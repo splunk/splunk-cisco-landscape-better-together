@@ -3,6 +3,7 @@ import './App.css';
 import GraphComponent from './GraphComponent';
 // import { links, nodes } from './graphData';
 import { readCSVFile } from './utils/file';
+import TilesOverview from './TilesOverview';
 
 function App() {
 
@@ -18,13 +19,13 @@ function App() {
     const data = await readCSVFile()
     setData(data)
     setIsLoading(false)
-
   }
 
   return (
     isLoading ? <div>...Loading</div> :
       <div className="App">
-        <GraphComponent data={data} generateTree={generateTree} />
+        <TilesOverview/>
+        {/* <GraphComponent data={data} generateTree={generateTree} /> */}
         {/* <GraphComponent data={{links: links, nodes: nodes}} generateTree={generateTree} /> */}
       </div>
   );

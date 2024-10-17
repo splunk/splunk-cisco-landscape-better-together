@@ -1,0 +1,54 @@
+/* Use !important to ensure that the custom CSS styles are not overridden by the default styles of MUI components, */
+
+.custom-card {
+    background-color: #071C31 !important;
+    width: 350px !important;
+    margin: 10px !important;
+}
+
+.custom-card a {
+    color:  #FE8D1D !important;
+    text-decoration: none !important;
+}
+
+.card-title {
+    color: #FFFFFF !important;
+    text-align: left !important;
+    margin-left: 10px !important;
+}
+
+.card-app {
+    color: #FFFFFF !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-left: 10px !important;
+}
+
+.card-text {
+    color: #FFFFFF !important;
+    font-size: 12px !important;
+    margin-left: 10px !important;
+}
+
+.card-app {
+    color: #FFFFFF !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-left: 10px !important;
+}
+
+.card-section {
+    color: #FFFFFF !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+.card-button {
+    background-color: #FF1C72 !important;
+    min-width: 300px !important;
+    margin-left: 10px !important;
+}
+
+
+

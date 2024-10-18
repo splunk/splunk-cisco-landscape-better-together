@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { readJSONFile } from "../../utils/file";
 
-const SankeyChart = () => {
+const SankeyChart = ({ type }) => {
+
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        if (window['google']) {
-            window['google'].charts.load('current', { 'packages': ['sankey'] });
-            window['google'].charts.setOnLoadCallback(drawChart);
+
+        const getData = async () => {
+            setIsLoading(true)
+            const data = await readJSONFile(type)
+            console.log(data);
+            if (window['google']) {
+                window['google'].charts.load('current', { 'packages': ['sankey'] });
+                window['google'].charts.setOnLoadCallback(drawChart);
+            }
+            setIsLoading(false)
         }
+
+        getData()
+
     }, [])
 
     function drawChart() {
@@ -35,7 +48,9 @@ const SankeyChart = () => {
 
     return (
         <div>
-            <h1>Testing</h1>
+            {isLoading && (
+                <p>Loading.....</p>
+            )}
             <div id="cisco_splunk_sankey" />
         </div>
     )

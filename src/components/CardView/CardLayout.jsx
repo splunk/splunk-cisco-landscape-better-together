@@ -1,156 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid2";
-import CardComponent from "./CardComponent"; // Import your CardComponent
+import CardComponent from "./CardComponent";
+import { readJSONFile } from "../../utils/file";
 
-const CardLayout = () => {
-    // TODO: Replace the cardData with a mapping function that will read the data for the json or csv file
-    const cardData = [
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-        {
-            title: "Cisco Secure Firewall ASA",
-            sections: [
-                {
-                    sectionTitle: "Splunk Cloud / CMP",
-                    app: "Splunk Add-on for Cisco ASA",
-                    description:
-                        "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances) The Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/5580" },
-                        { text: "Documentation", url: "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon://docs.splunk.com" },
-                    ],
-                },
-                {
-                    sectionTitle: "Splunk SOAR",
-                    app: "Cisco Meraki Dashboard Connector",
-                    description: "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. The API Key is generated in your account profile. An account with read only privileges is acceptable." ,
-                    links: [
-                        { text: "Splunkbase", url: "https://splunkbase.splunk.com/app/6086" },
-                        { text: "Documentation", url: "https://github.com/splunk-soar-connectors/meraki" },
-                    ],
-                },
-            ],
-        },
-       
-    ];
+
+const CardLayout = ( {category} ) => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const data = await readJSONFile()
+                setData(data);
+            } catch (error) {
+                console.error("Error reading data", error);
+            }
+        }
+        getData();
+    }, [])
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
+    const filteredData = data[category];
+
+    const convertData = (data) => {
+        const groupedData = data.reduce((acc, entry) => {
+            const { cisco_product, splunk_platform, splunk_addon, description, link, documentation } = entry;
+
+            if (!acc[cisco_product]) {
+                acc[cisco_product] = {
+                    title: cisco_product,
+                    sections: []
+                };
+            }
+
+            acc[cisco_product].sections.push({
+                sectionTitle: splunk_platform.trim(),
+                app: splunk_addon,
+                description: description,
+                links: [
+                    { text: "Splunkbase", url: link },
+                    { text: "Documentation", url: documentation }
+                ]
+            });
+
+            return acc;
+        }, {});
+
+        return Object.values(groupedData);
+    };
+
+    const cardData = convertData(filteredData);
 
     return (
         <Grid container spacing={1} justifyContent="flex-start" sx={{ paddingLeft: '150px' }}>

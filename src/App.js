@@ -7,7 +7,7 @@ import SankeyChart from './components/SankeyChart/SankeyChart';
 function App() {
   return (
     <div className="App">
-      <CardLayout />
+      <CardLayout category="Security"  />
       <SankeyChart type={'Collaboration'} />
     </div>
   );

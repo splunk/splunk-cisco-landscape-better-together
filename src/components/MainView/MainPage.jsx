@@ -11,6 +11,8 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import CardLayout from '../CardView/CardLayout'; 
 import SettingPopUp from './SettingPopUp';
 import InfoPopUp from './InfoPopUp';
+import SettingsIcon from '@mui/icons-material/Settings';
+import Button from '@mui/material/Button';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,6 +49,16 @@ function a11yProps(index) {
 
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const [selectedView, setSelectedView] = React.useState('Show cards layout');
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  }
+  const handleClose = (view) => {
+    setOpen(false);
+    setSelectedView(view);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,7 +88,7 @@ export default function VerticalTabs() {
           Item One
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CardLayout />
+          { selectedView === 'Show cards layout' ? (<CardLayout />) : (<Typography>Item 2</Typography>) }
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
@@ -85,8 +97,19 @@ export default function VerticalTabs() {
           Item Four
         </TabPanel>
       </Box>
+      {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
-        <SettingPopUp />
+        <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
+          <SettingsIcon />
+        </Button>
+        <SettingPopUp 
+          selectedView={selectedView}
+          open={open}
+          onClose={handleClose}
+        />
+        <Typography>
+          Selected: {selectedView}
+        </Typography>
         <InfoPopUp />
       </Box>
     </Box>

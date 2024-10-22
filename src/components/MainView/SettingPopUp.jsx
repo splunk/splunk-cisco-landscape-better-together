@@ -1,76 +1,42 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import SettingsIcon from '@mui/icons-material/Settings';
+import Avatar from '@mui/material/Avatar';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
+const views = ['Show cards layout', 'Show sankey layout'];
 
-export default function SettingPopUp() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+export default function SettingPopUp({ open, selectedView, onClose }) {
   const handleClose = () => {
-    setOpen(false);
+    onClose(selectedView)
+  };
+
+  const handleItemClick = (value) => {
+    onClose(value);
   };
 
   return (
-    <React.Fragment>
-      <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-        <SettingsIcon />
-      </Button>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Modal title
-        </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={(theme) => ({
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-          </Typography>
-        </DialogContent>
-      </BootstrapDialog>
-    </React.Fragment>
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Settings</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        {views.map((view) => (
+          <ListItem disableGutters key={view}>
+            <ListItemButton onClick={() => handleItemClick(view)}>
+              <ListItemAvatar>
+                <Avatar>
+                  <CheckBoxOutlineBlankIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={view} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Dialog>
   );
 }

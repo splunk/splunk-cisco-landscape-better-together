@@ -10,6 +10,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import SpeedIcon from '@mui/icons-material/Speed';
 import CardLayout from '../CardView/CardLayout'; 
 import SettingPopUp from './SettingPopUp';
+import InfoPopUp from './InfoPopUp';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -86,6 +87,7 @@ export default function VerticalTabs() {
       </Box>
       <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
         <SettingPopUp />
+        <InfoPopUp />
       </Box>
     </Box>
   );

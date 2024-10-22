@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import SettingsIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function SettingPopUp() {
+export default function InfoPopUp() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -32,7 +32,7 @@ export default function SettingPopUp() {
   return (
     <React.Fragment>
       <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-        <SettingsIcon />
+        <InfoIcon />
       </Button>
       <BootstrapDialog
         onClose={handleClose}

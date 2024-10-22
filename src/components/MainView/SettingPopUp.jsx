@@ -31,7 +31,7 @@ export default function SettingPopUp() {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen} >
+      <Button variant="outlined" onClick={handleClickOpen} sx={{ color: 'white' }}>
         <SettingsIcon />
       </Button>
       <BootstrapDialog

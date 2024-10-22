@@ -9,6 +9,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SpeedIcon from '@mui/icons-material/Speed';
 import CardLayout from '../CardView/CardLayout'; 
+import SettingPopUp from './SettingPopUp';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +50,7 @@ export default function VerticalTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-// bgcolor: '#039EC8'
+
   return (
     <Box
       sx={{ backgroundImage: 'linear-gradient(to bottom right, #039EC8, #071E34 70%, #C27221, #C42C4F)', display: 'flex', height: '100vh', alignItems: 'center' }}
@@ -82,6 +83,9 @@ export default function VerticalTabs() {
         <TabPanel value={value} index={3}>
           Item Four
         </TabPanel>
+      </Box>
+      <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
+        <SettingPopUp />
       </Box>
     </Box>
   );

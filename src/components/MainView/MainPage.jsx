@@ -8,11 +8,12 @@ import HubIcon from '@mui/icons-material/Hub';
 import SecurityIcon from '@mui/icons-material/Security';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SpeedIcon from '@mui/icons-material/Speed';
-import CardLayout from '../CardView/CardLayout'; 
 import SettingPopUp from './SettingPopUp';
 import InfoPopUp from './InfoPopUp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Button from '@mui/material/Button';
+import SankeyChart from '../SankeyChart/SankeyChart';
+import CardLayout from '../CardView/CardLayout'; 
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,16 +86,16 @@ export default function VerticalTabs() {
       <Box>
         {/* Tab content */}
         <TabPanel value={value} index={0}>
-          Item One
+          { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }
         </TabPanel>
         <TabPanel value={value} index={1}>
-          { selectedView === 'Show cards layout' ? (<CardLayout />) : (<Typography>Item 2</Typography>) }
+          { selectedView === 'Show cards layout' ? (<CardLayout category="Security"/>) : (<SankeyChart category={'Security'} />) }
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          { selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration"/>) : (<SankeyChart category={'Collaboration'} />) }
         </TabPanel>
         <TabPanel value={value} index={3}>
-          Item Four
+          { selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance"/>) : (<SankeyChart category={'Application Performance'} />) }
         </TabPanel>
       </Box>
       {/* Setting and info pop up */}

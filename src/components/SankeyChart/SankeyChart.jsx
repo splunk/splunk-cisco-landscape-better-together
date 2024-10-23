@@ -8,7 +8,7 @@ const SankeyChart = ({ type }) => {
 
     const buildTooltipContent = (data, isCiscoProduct = false) => {
         return `<div class='tooltip-box'>
-                        <p>${isCiscoProduct ? 'This is a Cisco product' : data.description}</p>
+                        <p>${isCiscoProduct ? data.cisco_product_description || 'Cisco Product Description' : data.description}</p>
                 </div>`
     }
 
@@ -85,8 +85,8 @@ const SankeyChart = ({ type }) => {
                     color: {
                         fill: '#c7daee',     // Color of the link.
                     },
-                    colorMode: 'source',
-                    colors
+                    // colorMode: 'source',
+                    // colors
                 },
             },
             tooltip: { isHtml: true }

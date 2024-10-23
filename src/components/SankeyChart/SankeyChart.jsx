@@ -8,7 +8,7 @@ const SankeyChart = ({ type }) => {
 
     const buildTooltipContent = (data, isCiscoProduct = false) => {
         return `<div class='tooltip-box'>
-                        <p>${isCiscoProduct ? data.cisco_product_description || 'Cisco Product Description' : data.description}</p>
+                        <p>${isCiscoProduct ? data.cisco_product_description : data.description}</p>
                 </div>`
     }
 

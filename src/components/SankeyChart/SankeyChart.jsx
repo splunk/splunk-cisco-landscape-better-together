@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { readJSONFile } from "../../utils/file";
 import './SankeyChart.css'
 
-const SankeyChart = ({ type }) => {
+const SankeyChart = ({ category }) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -32,7 +32,7 @@ const SankeyChart = ({ type }) => {
         const getData = async () => {
             setIsLoading(true)
 
-            const data = await readJSONFile(type)
+            const data = await readJSONFile(category)
             const rows = buildRows(data)
 
             if (window['google'] && rows) {
@@ -44,7 +44,7 @@ const SankeyChart = ({ type }) => {
 
         getData()
 
-    }, [type])
+    }, [category])
 
     function drawChart(rows) {
         if (!window['google'].visualization) return

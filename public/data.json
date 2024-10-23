@@ -1,0 +1,200 @@
+{
+    "Networking": [
+        {
+            "category": "Networking",
+            "cisco_product": "Cisco Secure Firewall ASA",
+            "splunk_addon": "Splunk Add-on for Cisco Meraki",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/5580",
+            "documentation": "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon",
+            "description": "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances)\n\nThe Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
+            "comments": ""
+        },
+        {
+            "category": "Networking",
+            "cisco_product": "Cisco Secure Firewall ASA",
+            "splunk_addon": "Cisco Meraki Dashboard Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/6086",
+            "documentation": "https://github.com/splunk-soar-connectors/meraki",
+            "description": "This app interfaces with the Cisco Meraki cloud managed devices. The search string specified is used to match a value in the client MAC address or description field. The default dashboard URL is dashboard.meraki.com. \nThe API Key is generated in your account profile. An account with read only privileges is acceptable.",
+            "comments": "Archived"
+        },
+        {
+            "category": "Networking",
+            "cisco_product": "Cisco Catalyst Switches",
+            "splunk_addon": "Cisco Catalyst Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5884",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscocatalyst",
+            "description": "This app supports containment actions like 'set system vlan' in addition to investigative actions like 'get config' and 'get version' on a Cisco Catalyst switch.",
+            "comments": "Archived"
+        }
+    ],
+    "Security": [
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Web Appliance",
+            "splunk_addon": "Splunk Add-on for Cisco WSA",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/1747",
+            "documentation": "https://docs.splunk.com/Documentation/AddOns/released/CiscoWSA/About",
+            "description": "The Splunk Add-on for Cisco WSA allows a Splunk software administrator to collect access and L4TM log data from Cisco Web Security Appliances (WSA) (formerly known as IronPort AsyncOS for Web). \nYou can analyze these logs directly or use them as a contextual data source to correlate with other communication and authentication data in the Splunk platform.",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Firewall ASA",
+            "splunk_addon": "Splunk Add-on for Cisco ASA",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/1620",
+            "documentation": "https://docs.splunk.com/Documentation/AddOns/released/CiscoASA/Description",
+            "description": "The Splunk Add-on for Cisco ASA allows a Splunk software administrator to map Cisco ASA data to create CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Firewall ASA",
+            "splunk_addon": "Cisco ASA Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5778",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscoasa",
+            "description": "This app supports containment actions in addition to investigative actions on a Cisco ASA device",
+            "comments": "Archived"
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Identity Services Engine",
+            "splunk_addon": "Splunk Add-on for Cisco Identity Services",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/1915",
+            "documentation": "https://docs.splunk.com/Documentation/AddOns/released/CiscoISE/About",
+            "description": "The Splunk Add-on for Cisco ISE allows a Splunk software administrator to collect Cisco Identity Service Engine (ISE) syslog data.",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Identity Services Engine",
+            "splunk_addon": "Cisco ISE Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5885",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscoise",
+            "description": "This app implements investigative and containment actions on a Cisco ISE device",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Email Gateway",
+            "splunk_addon": "Splunk Add-on for Cisco ESA",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/1761",
+            "documentation": "https://docs.splunk.com/Documentation/AddOns/released/CiscoESA/About",
+            "description": "The Splunk Add-on for Cisco ESA allows the Splunk software administrator to leverage Textmail, HTTP, Consolidated Event Logs, AMP, Delivery, Bounce, and Authentication logs of Cisco ESA. ",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Email Gateway",
+            "splunk_addon": "Cisco ESA Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5779",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscoesa",
+            "description": "This app supports investigation on the Cisco Email Security Appliance (ESA) device",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Umbrella",
+            "splunk_addon": "Cisco Umbrella Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5887",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscoumbrella",
+            "description": "This app allows management of a domain list on the Cisco Umbrella Security platform",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Umbrella Investigate",
+            "splunk_addon": "Cisco Umbrella Investigate Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5780",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscoumbrellainvestigate",
+            "description": "This app implements investigative actions by querying the Cisco Umbrella Investigate cloud service",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Threat Response",
+            "splunk_addon": "Cisco Threat Response Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5997",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscothreatresponse",
+            "description": "Cisco SecureX Threat Response app for Phantom provides actions allowing users to query Cisco SecureX Threat Response for verdicts and context on observables within a Phantom instance",
+            "comments": "Archived"
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Secure Firewall",
+            "splunk_addon": "Cisco Firepower Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5995",
+            "documentation": "https://github.com/splunk-soar-connectors/wwt_cisco_firepower",
+            "description": "This app interfaces with Cisco Firepower devices to add or remove IPs or networks to a Firepower Network Group Object, which is configured with an ACL",
+            "comments": ""
+        },
+        {
+            "category": "Security",
+            "cisco_product": "Cisco Tetration Platform",
+            "splunk_addon": "Cisco Tetration Analytics Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5996",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscotetrationanalytics",
+            "description": "This app supports variety of investigative actions on Cisco Tetration Analytics",
+            "comments": ""
+        }
+    ],
+    "Collaboration": [
+        {
+            "category": "Collaboration",
+            "cisco_product": "Cisco Webex",
+            "splunk_addon": "Cisco Webex Meetings Add-on for Splunk",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/4991",
+            "documentation": "https://github.com/splunk/ta-cisco-webex-meetings-add-on-for-splunk/blob/master/README.md",
+            "description": "Cisco WebEx Meetings Add-on for Splunk uses Cisco's WebEx Meetings XML API to fetch data and ingest it into Splunk. The Add-on supports retrieving data from multiple API endpoints for Cisco WebEx meetings.",
+            "comments": "Archived"
+        },
+        {
+            "category": "Collaboration",
+            "cisco_product": "Cisco Webex",
+            "splunk_addon": "Cisco Webex Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5781",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscowebex",
+            "description": "This app integrates with Cisco Webex to implement investigative and genric actions",
+            "comments": ""
+        },
+        {
+            "category": "Collaboration",
+            "cisco_product": "Cisco Spark",
+            "splunk_addon": "Cisco Spark Connector",
+            "splunk_platform": "SOAR",
+            "link": "https://splunkbase.splunk.com/app/5886",
+            "documentation": "https://github.com/splunk-soar-connectors/ciscospark",
+            "description": "Integrate with Cisco Spark to implement investigative actions",
+            "comments": "This app is now deprecated. Please use the Cisco Webex App (https://splunkbase.splunk.com/app/5781/) as a replacement. Integrate with Cisco Spark to implement investigative actions"
+        }
+    ],
+    "Application Performance": [
+        {
+            "category": "Application Performance",
+            "cisco_product": "Cisco AppDynamics",
+            "splunk_addon": "Splunk Add-on for AppDynamics",
+            "splunk_platform": "Splunk Cloud ",
+            "link": "https://splunkbase.splunk.com/app/3471",
+            "documentation": "https://github.com/splunk/splunk_TA_AppDynamics/tree/master",
+            "description": "The Splunk Add-on for AppDynamics enables you to easily configure data inputs to pull data from AppDynamics' REST APIs. ",
+            "comments": ""
+        }
+    ]
+}

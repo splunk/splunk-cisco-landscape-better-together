@@ -13,8 +13,16 @@ import InfoPopUp from './InfoPopUp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Button from '@mui/material/Button';
 import SankeyChart from '../SankeyChart/SankeyChart';
-import CardLayout from '../CardView/CardLayout'; 
+import CardLayout from '../CardView/CardLayout';
 
+const tabStyles = {
+  color: 'white',
+  paddingTop: '120px',
+  fontSize: '20px',
+  '&.Mui-selected': {
+    color: '#0f0f0f',
+  },
+};
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -67,9 +75,9 @@ export default function VerticalTabs() {
 
   return (
     <Box
-      sx={{ backgroundImage: 'linear-gradient(to bottom right, #039EC8, #071E34 70%, #C27221, #C42C4F)', display: 'flex', height: '100vh', alignItems: 'center' }}
+      sx={{ position: 'relative', backgroundImage: 'linear-gradient(to bottom right, #039EC8, #071E34 70%, #C27221, #C42C4F)', display: 'flex', flexDirection: 'row', minHeight: '100vh', alignItems: 'flex-start' }}
     >
-      <Box> 
+      <Box sx={{ flexBasis: '20%'}}>
         {/* Tabs */}
         <Tabs
           orientation="vertical"
@@ -77,13 +85,13 @@ export default function VerticalTabs() {
           onChange={handleChange}
           sx={{ borderRight: 1, borderColor: 'divider', height: 'auto', width: '300px' }}
         >
-          <Tab label="Networking" sx={{color: 'white'}} icon={<HubIcon />} {...a11yProps(0)} />
-          <Tab label="Security" sx={{color: 'white'}} icon={<SecurityIcon />} {...a11yProps(1)} />
-          <Tab label="Collaboration" sx={{color: 'white'}} icon={<GroupsIcon />} {...a11yProps(2)} />
-          <Tab label="Application Performance" sx={{color: 'white'}} icon={<SpeedIcon />} {...a11yProps(3)} />
+          <Tab label="Networking" sx={{ color: 'white', paddingTop: '120px', fontSize: '20px', '&.Mui-selected': {color: '#0f0f0f'} }} icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
+          <Tab label="Security" sx={{ color: 'white', paddingTop: '120px', fontSize: '20px', '&.Mui-selected': {color: '#0f0f0f'} }} icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
+          <Tab label="Collaboration" sx={{ color: 'white', paddingTop: '120px', fontSize: '20px', '&.Mui-selected': {color: '#0f0f0f'} }} icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
+          <Tab label="Application Performance" sx={{ color: 'white', paddingTop: '120px', fontSize: '20px', '&.Mui-selected': {color: '#0f0f0f'} }} icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
         </Tabs>
       </Box>
-      <Box>
+      <Box sx={{ flexBasis: '80%', paddingTop: '100px'}}>
         {/* Tab content */}
         <TabPanel value={value} index={0}>
           { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }
@@ -99,18 +107,15 @@ export default function VerticalTabs() {
         </TabPanel>
       </Box>
       {/* Setting and info pop up */}
-      <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
+      <Box sx={{ position: 'absolute', bottom: 100, right: 100 }}>
         <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-          <SettingsIcon />
+          <SettingsIcon sx={{ fontSize: '2.5rem' }}/>
         </Button>
-        <SettingPopUp 
+        <SettingPopUp
           selectedView={selectedView}
           open={open}
           onClose={handleClose}
         />
-        <Typography>
-          Selected: {selectedView}
-        </Typography>
         <InfoPopUp />
       </Box>
     </Box>

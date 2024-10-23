@@ -32,7 +32,7 @@ export default function InfoPopUp() {
   return (
     <React.Fragment>
       <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-        <InfoIcon />
+        <InfoIcon sx={{ fontSize: '2.2rem' }} />
       </Button>
       <BootstrapDialog
         onClose={handleClose}

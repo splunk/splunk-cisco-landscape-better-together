@@ -55,7 +55,7 @@ const CardLayout = ( {category} ) => {
     const cardData = convertData(filteredData);
 
     return (
-        <Grid container spacing={1} justifyContent="flex-start" sx={{ paddingLeft: '150px' }}>
+        <Grid container spacing={1} justifyContent="flex-start" alignItems="flex-start">
             {cardData.map((card, index) => (
                 <Grid item key={index}>
                     <CardComponent title={card.title} sections={card.sections} />

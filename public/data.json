@@ -3,6 +3,7 @@
         {
             "category": "Networking",
             "cisco_product": "Cisco Secure Firewall ASA",
+            "cisco_product_description": "The Cisco Secure Firewall ASA provides protection to devices within coporate networks and data centers of all sizes.",
             "splunk_addon": "Splunk Add-on for Cisco Meraki",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/5580",
@@ -13,6 +14,7 @@
         {
             "category": "Networking",
             "cisco_product": "Cisco Secure Firewall ASA",
+            "cisco_product_description": "The Cisco Secure Firewall ASA provides protection to devices within coporate networks and data centers of all sizes.",
             "splunk_addon": "Cisco Meraki Dashboard Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/6086",
@@ -23,6 +25,7 @@
         {
             "category": "Networking",
             "cisco_product": "Cisco Catalyst Switches",
+            "cisco_product_description": "Cisco has a variety of switches that belong to the Catalyst family. These are powerful devices that help organizations manage networks in the most efficient way, providing security at all layers.",
             "splunk_addon": "Cisco Catalyst Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5884",
@@ -35,6 +38,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Web Appliance",
+            "cisco_product_description": "This is a Cisco platform that combines multtiple functionalities to operate through the network, such as malware protection, application control, enviromennt automation, among others. This product will help organizations to have protection against attacks.",
             "splunk_addon": "Splunk Add-on for Cisco WSA",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/1747",
@@ -45,6 +49,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Firewall ASA",
+            "cisco_product_description": "The Cisco Secure Firewall ASA provides protection to devices within coporate networks and data centers of all sizes.",
             "splunk_addon": "Splunk Add-on for Cisco ASA",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/1620",
@@ -55,6 +60,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Firewall ASA",
+            "cisco_product_description": "The Cisco Secure Firewall ASA provides protection to devices within coporate networks and data centers of all sizes.",
             "splunk_addon": "Cisco ASA Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5778",
@@ -65,6 +71,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Identity Services Engine",
+            "cisco_product_description": "In a zero-trust architecture, Cisco ISE provides high visibility into every device on the network. It collects information across the network to identify threats. Cisco ISE allows only trusted devices and users to access resources within the network.",
             "splunk_addon": "Splunk Add-on for Cisco Identity Services",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/1915",
@@ -75,6 +82,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Identity Services Engine",
+            "cisco_product_description": "In a zero-trust architecture, Cisco ISE provides high visibility into every device on the network. It collects information across the network to identify threats. Cisco ISE allows only trusted devices and users to access resources within the network.",
             "splunk_addon": "Cisco ISE Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5885",
@@ -85,6 +93,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Email Gateway",
+            "cisco_product_description": "The Cisco Secure Email Gateway allows customers to secure their email communications. It stands against ransomware, malware, phishing, spam, and more. It includes advanced protection capabilities to prevent, detect, and block these types of threats.",
             "splunk_addon": "Splunk Add-on for Cisco ESA",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/1761",
@@ -95,6 +104,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Email Gateway",
+            "cisco_product_description": "The Cisco Secure Email Gateway allows customers to secure their email communications. It stands against ransomware, malware, phishing, spam, and more. It includes advanced protection capabilities to prevent, detect, and block these types of threats.",
             "splunk_addon": "Cisco ESA Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5779",
@@ -105,6 +115,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Umbrella",
+            "cisco_product_description": "This product provides protection against malicious activities by leveraging the internet’s infrastructure to enforce security through a cloud-based architecture.",
             "splunk_addon": "Cisco Umbrella Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5887",
@@ -115,6 +126,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Umbrella Investigate",
+            "cisco_product_description": "Cisco Umbrella Investigate provides protection against threats using its unique capability to collect information such as domains, IPs, and files to identify possible attackers’ infrastructures.",
             "splunk_addon": "Cisco Umbrella Investigate Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5780",
@@ -125,6 +137,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Threat Response",
+            "cisco_product_description": "Cisco Threat Response helps identify malicious activities from various sources by leveraging specialized threat intelligence, which speeds up incident response once a problem is detected.",
             "splunk_addon": "Cisco Threat Response Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5997",
@@ -135,6 +148,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Secure Firewall",
+            "cisco_product_description": "The Cisco Secure Firewall provides protection for devices within corporate networks and data centers of all sizes.",
             "splunk_addon": "Cisco Firepower Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5995",
@@ -145,6 +159,7 @@
         {
             "category": "Security",
             "cisco_product": "Cisco Tetration Platform",
+            "cisco_product_description": "Cisco Tetration offers protection for multicloud data centers using a zero-trust policy. It helps customers identify security incidents faster; for example, it can detect vulnerabilities in any software installed on the servers.",
             "splunk_addon": "Cisco Tetration Analytics Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5996",
@@ -157,6 +172,7 @@
         {
             "category": "Collaboration",
             "cisco_product": "Cisco Webex",
+            "cisco_product_description": "Cisco Webex is a solution that serves as a collaboration environment. You can use it to launch real-time video conferences or create chat groups with your colleagues.",
             "splunk_addon": "Cisco Webex Meetings Add-on for Splunk",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/4991",
@@ -167,6 +183,7 @@
         {
             "category": "Collaboration",
             "cisco_product": "Cisco Webex",
+            "cisco_product_description": "Cisco Webex is a solution that serves as a collaboration environment. You can use it to launch real-time video conferences or create chat groups with your colleagues.",
             "splunk_addon": "Cisco Webex Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5781",
@@ -177,6 +194,7 @@
         {
             "category": "Collaboration",
             "cisco_product": "Cisco Spark",
+            "cisco_product_description": "Cisco Spark was a collaboration suite for teams to work seamlessly, offering messaging, calls, whiteboards, and other features. This product is no longer supported; Cisco Webex is the new integration.",
             "splunk_addon": "Cisco Spark Connector",
             "splunk_platform": "SOAR",
             "link": "https://splunkbase.splunk.com/app/5886",
@@ -189,6 +207,7 @@
         {
             "category": "Application Performance",
             "cisco_product": "Cisco AppDynamics",
+            "cisco_product_description": "Cisco AppDynamics is a full-stack observability platform that helps monitor your environment to detect issues in real time using Application Performance Monitoring (APM).",
             "splunk_addon": "Splunk Add-on for AppDynamics",
             "splunk_platform": "Splunk Cloud ",
             "link": "https://splunkbase.splunk.com/app/3471",

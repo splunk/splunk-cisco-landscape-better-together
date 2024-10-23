@@ -1,0 +1,13 @@
+.chart-container {
+    padding: 0 0.5rem;
+}
+
+.tooltip-box {
+    width: 350px;
+    text-align: justify;
+}
+
+.tooltip-box p {
+    margin: 0.5rem;
+    font-size: 12px;
+}

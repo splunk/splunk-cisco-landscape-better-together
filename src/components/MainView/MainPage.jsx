@@ -25,10 +25,8 @@ const StyledBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  maxHeight: '100vh',
   alignItems: 'flex-start',
   maxWidth: '100vw',
-  overflow: 'hidden',
 });
 
 const StyledTabs = styled(Tabs)({

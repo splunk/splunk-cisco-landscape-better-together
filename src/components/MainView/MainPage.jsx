@@ -16,6 +16,7 @@ import SankeyChart from '../SankeyChart/SankeyChart';
 import CardLayout from '../CardView/CardLayout';
 import { styled } from '@mui/system';
 import ciscoLogo from '../../ciscoLogo.png'
+import NodeView from '../NodeView/NodeView';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -24,7 +25,8 @@ const StyledBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  alignItems: 'flex-start'
+  alignItems: 'flex-start',
+  maxWidth: '100vw',
 });
 
 const StyledTabs = styled(Tabs)({
@@ -82,9 +84,9 @@ function a11yProps(index) {
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const [selectedView, setSelectedView] = React.useState('Show cards layout');
+  const [selectedView, setSelectedView] = React.useState('Show Card Layout');
 
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
     setOpen(true);
   }
   const handleClose = (view) => {
@@ -94,6 +96,19 @@ export default function VerticalTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const getLayoutOptions = (category) => {
+    switch(selectedView){
+      case 'Show Card Layout':
+        return <CardLayout category={category} />;
+      case 'Show Sankey Layout':
+        return <SankeyChart category={category} />;
+      case 'Show Flow Layout':
+        return <NodeView category={category} />;  
+      default:
+        return <CardLayout category={category} />;
+    }
   };
 
   return (
@@ -121,16 +136,16 @@ export default function VerticalTabs() {
         <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
           {/* Tab content */}
           <TabPanel value={value} index={0}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Networking" />) : (<SankeyChart category={'Networking'} />)}
+            {getLayoutOptions('Networking')}
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Security" />) : (<SankeyChart category={'Security'} />)}
+            {getLayoutOptions('Security')}
           </TabPanel>
           <TabPanel value={value} index={2}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration" />) : (<SankeyChart category={'Collaboration'} />)}
+            {getLayoutOptions('Collaboration')}
           </TabPanel>
           <TabPanel value={value} index={3}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance" />) : (<SankeyChart category={'Application Performance'} />)}
+            {getLayoutOptions('Application Performance')}
           </TabPanel>
         </Box>
       </Box>

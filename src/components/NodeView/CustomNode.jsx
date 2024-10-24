@@ -1,6 +1,7 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 import 'reactflow/dist/style.css';
+import { OPACITY } from '../../utils/constants';
 
 const CustomNode = ({ data }) => {
   const renderHandles = () => {
@@ -22,7 +23,7 @@ const CustomNode = ({ data }) => {
   };
 
 return (
-    <div style={{ padding: 10, borderRadius: 5, backgroundColor: data.background, width: 300, opacity: data.opacity, color : 'white' }}>
+    <div style={{ padding: 10, borderRadius: 5, backgroundColor: data.background, width: 300, opacity: OPACITY, color : data.color }}>
         <div>{data.label }</div>
         {renderHandles()}
     </div>

@@ -1,6 +1,6 @@
 import dagre from '@dagrejs/dagre';
 import { readJSONFile } from './file';
-import { CISCO_PRODUCT_BG_COLOR, CISCO_PRODUCT_OPACITY, LEFT, RIGHT, SPLUNK_ADDON_BG_COLOR, SPLUNK_ADDON_OPACITY, SPLUNK_PLATFORM_BG_COLOR, SPLUNK_PLATFORM_OPACITY } from './constants';
+import { CISCO_PRODUCT_BG_COLOR, WHITE, LEFT, RIGHT, SPLUNK_ADDON_BG_COLOR, SPLUNK_PLATFORM_BG_COLOR } from './constants';
 
 const calculateGraphPositions = (nodes, links) => {
     const nodeWidth = 350;
@@ -73,18 +73,18 @@ const generateGraph = (result) => {
     const soarAddonSet = result.soarAddonSet;
     let count = 0;
     for (const key of ciscoProductSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 1, background: CISCO_PRODUCT_BG_COLOR, opacity: CISCO_PRODUCT_OPACITY } });
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 1, background: CISCO_PRODUCT_BG_COLOR, color : WHITE } });
         count++;
     }
     count = 0;
     for (const key of splunkAddonSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, opacity: SPLUNK_ADDON_OPACITY } });
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR , color : CISCO_PRODUCT_BG_COLOR} });
         links.push({ source: key, target: result.nodes[key].splunk_platform });
         links.push({ source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
         count++;
     }
     for (const key of soarAddonSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, opacity: SPLUNK_ADDON_OPACITY } });
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, color : CISCO_PRODUCT_BG_COLOR } });
         links.push({ source: key, target: result.nodes[key].splunk_platform });
         links.push({ source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
         count++;
@@ -92,7 +92,7 @@ const generateGraph = (result) => {
     count = 0;
 
     for (const key of SplunkPlatformSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 3, background: SPLUNK_PLATFORM_BG_COLOR, opacity: SPLUNK_PLATFORM_OPACITY } });
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 3, background: SPLUNK_PLATFORM_BG_COLOR, color : WHITE } });
         count++;
     }
 

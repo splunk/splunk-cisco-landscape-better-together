@@ -100,7 +100,7 @@ const SankeyChart = ({ category }) => {
     return (
         <div className="chart-container">
             {isLoading && (
-                <p>Loading.....</p>
+                <p style={{ color: 'rgb(250, 250, 250)' }}>Loading.....</p>
             )}
             <div id="cisco-splunk-sankey" />
         </div>

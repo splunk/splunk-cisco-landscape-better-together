@@ -24,7 +24,7 @@ const CardComponent = ({ title, sections }) => {
         <Card className="custom-card">
             <CardHeader className="card-title" title={title} />
             {sections.map((section, index) => (
-                <div key={index}>
+                <div key={index} style={{ margin: '2%' }}>
                     <CardActions>
                         <Button className="card-button"
                             onClick={() => handleExpandClick(section.sectionTitle)}

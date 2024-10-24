@@ -20,7 +20,7 @@ const CardLayout = ( {category} ) => {
     }, [])
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <div style={{ color: 'rgb(250, 250, 250)' }}>Loading...</div>;
     }
 
     const filteredData = data[category];
@@ -55,7 +55,7 @@ const CardLayout = ( {category} ) => {
     const cardData = convertData(filteredData);
 
     return (
-        <Grid container spacing={1} justifyContent="flex-start" sx={{ paddingLeft: '150px' }}>
+        <Grid container spacing={1} justifyContent="flex-start" alignItems="flex-start">
             {cardData.map((card, index) => (
                 <Grid item key={index}>
                     <CardComponent title={card.title} sections={card.sections} />

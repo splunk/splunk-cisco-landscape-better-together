@@ -82,6 +82,7 @@ export default function VerticalTabs() {
         sx={{
           display: 'flex', 
           flexGrow: 1, 
+          width: '100%'
         }}
       >
         <Box sx={{ flexBasis: '20%'}}>
@@ -101,22 +102,23 @@ export default function VerticalTabs() {
         <Box sx={{ flexBasis: '80%', paddingTop: '100px' }}>
           {/* Tab content */}
           <TabPanel value={value} index={0}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }
+            { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : selectedView === 'Show sankey layout' ? (<SankeyChart category={'Networking'} />) : (<Typography>Nodes</Typography>) }
           </TabPanel>
           <TabPanel value={value} index={1}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Security"/>) : (<SankeyChart category={'Security'} />) }
+            { selectedView === 'Show cards layout' ? (<CardLayout category="Security"/>) : selectedView === 'Show sankey layout' ? (<SankeyChart category={'Security'} />) : (<Typography>Nodes</Typography>) }
           </TabPanel>
           <TabPanel value={value} index={2}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration"/>) : (<SankeyChart category={'Collaboration'} />) }
+            { selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration"/>) : selectedView === 'Show sankey layout' ? (<SankeyChart category={'Collaboration'} />) : (<Typography>Nodes</Typography>) }
           </TabPanel>
           <TabPanel value={value} index={3}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance"/>) : (<SankeyChart category={'Application Performance'} />) }
+            { selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance"/>) : selectedView === 'Show sankey layout' ? (<SankeyChart category={'Application Performance'} />) : (<Typography>Nodes</Typography>)}
           </TabPanel>
         </Box>
       </Box>
-      {/* <Box sx={{ position:"relative", bottom:'10px', width:"100%" }}>
+      {/* Logo */}
+      <Box sx={{ position:"relative", bottom:'10px', width:"100%" }}>
         <img src={ciscoLogo} alt="Logo" style={{ width: '200px', height: 'auto' }}/>  
-      </Box>  */}
+      </Box> 
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', bottom: 100, right: 100 }}>
         <Button onClick={handleClickOpen} sx={{ color: 'white' }}>

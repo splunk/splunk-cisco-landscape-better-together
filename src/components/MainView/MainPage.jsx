@@ -100,8 +100,8 @@ export default function VerticalTabs() {
     <StyledBox>
       <Box
         sx={{
-          display: 'flex', 
-          flexGrow: 1, 
+          display: 'flex',
+          flexGrow: 1,
           width: '100%'
         }}
       >
@@ -118,30 +118,30 @@ export default function VerticalTabs() {
             <StyledTab label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
           </StyledTabs>
         </Box>
-        <Box sx={{ flexBasis: '80%', marginTop: '4%' }}>
+        <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
           {/* Tab content */}
           <TabPanel value={value} index={0}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }
+            {selectedView === 'Show cards layout' ? (<CardLayout category="Networking" />) : (<SankeyChart category={'Networking'} />)}
           </TabPanel>
           <TabPanel value={value} index={1}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Security"/>) : (<SankeyChart category={'Security'} />) }
+            {selectedView === 'Show cards layout' ? (<CardLayout category="Security" />) : (<SankeyChart category={'Security'} />)}
           </TabPanel>
           <TabPanel value={value} index={2}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration"/>) : (<SankeyChart category={'Collaboration'} />) }
+            {selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration" />) : (<SankeyChart category={'Collaboration'} />)}
           </TabPanel>
           <TabPanel value={value} index={3}>
-            { selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance"/>) : (<SankeyChart category={'Application Performance'} />) }
+            {selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance" />) : (<SankeyChart category={'Application Performance'} />)}
           </TabPanel>
         </Box>
       </Box>
       {/* Logo */}
-      <Box sx={{ position:"relative", bottom:'10px', width:"100%" }}>
-        <img src={ciscoLogo} alt="Logo" style={{ width: '400px', height: 'auto' }}/>  
-      </Box> 
+      <Box sx={{ position: "relative", bottom: '10px', width: "100%" }}>
+        <img src={ciscoLogo} alt="Logo" style={{ width: '400px', height: 'auto' }} />
+      </Box>
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>
         <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-          <SettingsIcon sx={{ fontSize: '2.5rem' }}/>
+          <SettingsIcon sx={{ fontSize: '2.5rem' }} />
         </Button>
         <SettingPopUp
           selectedView={selectedView}

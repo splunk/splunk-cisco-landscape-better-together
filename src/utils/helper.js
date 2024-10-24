@@ -72,28 +72,23 @@ const generateGraph = (result) => {
     const SplunkPlatformSet = result.SplunkPlatformSet;
     const soarAddonSet = result.soarAddonSet;
     let count = 0;
+    let linkCount = 0;
     for (const key of ciscoProductSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 1, background: CISCO_PRODUCT_BG_COLOR, color : WHITE } });
-        count++;
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 1, background: CISCO_PRODUCT_BG_COLOR, color: WHITE } });
     }
-    count = 0;
     for (const key of splunkAddonSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR , color : CISCO_PRODUCT_BG_COLOR} });
-        links.push({ source: key, target: result.nodes[key].splunk_platform });
-        links.push({ source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
-        count++;
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, color: CISCO_PRODUCT_BG_COLOR } });
+        links.push({ id: `e${linkCount++}`, source: key, target: result.nodes[key].splunk_platform });
+        links.push({ id: `e${linkCount++}`, source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
     }
     for (const key of soarAddonSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, color : CISCO_PRODUCT_BG_COLOR } });
-        links.push({ source: key, target: result.nodes[key].splunk_platform });
-        links.push({ source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
-        count++;
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 2, background: SPLUNK_ADDON_BG_COLOR, color: CISCO_PRODUCT_BG_COLOR } });
+        links.push({ id: `e${linkCount++}`, source: key, target: result.nodes[key].splunk_platform });
+        links.push({ id: `e${linkCount++}`, source: result.nodes[key].cisco_product, target: result.nodes[key].splunk_addon });
     }
-    count = 0;
 
     for (const key of SplunkPlatformSet) {
-        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 3, background: SPLUNK_PLATFORM_BG_COLOR, color : WHITE } });
-        count++;
+        nodes.push({ id: key, type: 'customNode', data: { label: key, row: 3, background: SPLUNK_PLATFORM_BG_COLOR, color: WHITE } });
     }
 
     const calculatedGraphData = calculateGraphPositions(nodes, links);

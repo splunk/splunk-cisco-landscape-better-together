@@ -18,7 +18,8 @@ import { styled } from '@mui/system';
 
 const StyledBox = styled(Box)({
   position: 'relative',
-  backgroundImage: 'linear-gradient(to bottom right, #039EC8, #071E34 70%, #C27221, #C42C4F)',
+  // Palette: https://coolors.co/01bbea-114f76-1b244b-8c125b-fc453f-fd6e0e
+  backgroundImage: 'linear-gradient(to bottom left, #01BBEA, #114F76 50%, #1B244B, #8C125B, #FC453F, #FD6E0E)',
   display: 'flex',
   flexDirection: 'row',
   minHeight: '100vh',
@@ -109,7 +110,7 @@ export default function VerticalTabs() {
           <StyledTab label="Application" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
         </StyledTabs>
       </Box>
-      <Box sx={{ flexBasis: '80%' }}>
+      <Box sx={{ flexBasis: '80%', marginTop: '4%' }}>
         {/* Tab content */}
         <TabPanel value={value} index={0}>
           { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }

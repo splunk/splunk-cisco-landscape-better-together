@@ -126,7 +126,7 @@ export default function VerticalTabs() {
         </TabPanel>
       </Box>
       {/* Setting and info pop up */}
-      <Box sx={{ position: 'absolute', bottom: 100, right: 100 }}>
+      <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>
         <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
           <SettingsIcon sx={{ fontSize: '2.5rem' }}/>
         </Button>

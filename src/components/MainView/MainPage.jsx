@@ -16,6 +16,7 @@ import SankeyChart from '../SankeyChart/SankeyChart';
 import CardLayout from '../CardView/CardLayout';
 import { styled } from '@mui/system';
 import ciscoLogo from '../../ciscoLogo.png'
+import NodeView from '../NodeView/NodeView';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -24,7 +25,10 @@ const StyledBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  alignItems: 'flex-start'
+  maxHeight: '100vh',
+  alignItems: 'flex-start',
+  maxWidth: '100vw',
+  overflow: 'hidden',
 });
 
 const StyledTabs = styled(Tabs)({
@@ -84,7 +88,7 @@ export default function VerticalTabs() {
   const [open, setOpen] = React.useState(false);
   const [selectedView, setSelectedView] = React.useState('Show cards layout');
 
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
     setOpen(true);
   }
   const handleClose = (view) => {
@@ -94,6 +98,19 @@ export default function VerticalTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const getLayoutOptions = (category) => {
+    switch(selectedView){
+      case 'Show cards layout':
+        return <CardLayout category={category} />;
+      case 'Show sankey layout':
+        return <SankeyChart category={category} />;
+      case 'Show Nodes layout':
+        return <NodeView category={category} />;  
+      default:
+        return <CardLayout category={category} />;
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
-const views = ['Show cards layout', 'Show sankey layout'];
+const views = ['Show cards layout', 'Show sankey layout', 'Show Nodes layout'];
 
 export default function SettingPopUp({ open, selectedView, onClose }) {
   const handleClose = () => {

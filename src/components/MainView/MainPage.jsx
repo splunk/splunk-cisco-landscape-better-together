@@ -29,7 +29,6 @@ const StyledTabs = styled(Tabs)({
   borderRight: 1,
   borderColor: 'divider',
   height: 'auto',
-  width: '300px',
   '& .MuiTabs-indicator': {
     backgroundColor: '#fafafa',
   },
@@ -37,7 +36,7 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTab = styled(Tab)({
   color: 'rgb(181, 181, 181)',
-  marginTop: '50px',
+  marginTop: '12%',
   padding: '100 50 100 50',
   fontSize: '20px',
   '&.Mui-selected': {
@@ -110,7 +109,7 @@ export default function VerticalTabs() {
           <StyledTab label="Application" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
         </StyledTabs>
       </Box>
-      <Box sx={{ flexBasis: '80%', paddingTop: '100px'}}>
+      <Box sx={{ flexBasis: '80%' }}>
         {/* Tab content */}
         <TabPanel value={value} index={0}>
           { selectedView === 'Show cards layout' ? (<CardLayout category="Networking"/>) : (<SankeyChart category={'Networking'} />) }

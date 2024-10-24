@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import SankeyChart from '../SankeyChart/SankeyChart';
 import CardLayout from '../CardView/CardLayout';
 import { styled } from '@mui/system';
+import ciscoLogo from '../../ciscoLogo.png'
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -125,11 +126,11 @@ export default function VerticalTabs() {
           { selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance"/>) : (<SankeyChart category={'Application Performance'} />) }
         </TabPanel>
       </Box>
+      <Box sx={{ position:"relative", bottom:'10px', width:"100%" }}>
+        <img src={ciscoLogo} alt="Logo" style={{ width: '200px', height: 'auto' }}/>  
+      </Box> 
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>
-        <Button onClick={handleClickOpen} sx={{ color: 'white' }}>
-          <SettingsIcon sx={{ fontSize: '2.5rem' }}/>
-        </Button>
         <SettingPopUp
           selectedView={selectedView}
           open={open}

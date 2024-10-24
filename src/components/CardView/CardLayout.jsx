@@ -20,7 +20,7 @@ const CardLayout = ( {category} ) => {
     }, [])
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <div style={{ color: 'rgb(250, 250, 250)' }}>Loading...</div>;
     }
 
     const filteredData = data[category];

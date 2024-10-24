@@ -8,11 +8,11 @@ import CustomEdge from './CustomEdge';
 
 // Define the custom node and edge types
 const nodeTypes = {
-  customNode: CustomNode,
+    customNode: CustomNode,
 };
 
 const edgeTypes = {
-  customEdge: CustomEdge,
+    customEdge: CustomEdge,
 };
 
 const NodeView = ({ category }) => {
@@ -38,25 +38,25 @@ const NodeView = ({ category }) => {
     }, [category]);
 
     return (
-        <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            width: '70vw', 
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '70vw',
             height: '70vh',
         }}>
             {isLoading ? (
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: 'center', color: 'rgb(250, 250, 250)' }}>
                     <p>Loading...</p>
                 </div>
             ) : (
-                    <ReactFlow
-                        nodes={nodes}
-                        edges={edges}
-                        nodeTypes={nodeTypes}
-                        edgeTypes={edgeTypes}
-                        fitView
-                    />
+                <ReactFlow
+                    nodes={nodes}
+                    edges={edges}
+                    nodeTypes={nodeTypes}
+                    edgeTypes={edgeTypes}
+                    fitView
+                />
             )}
         </div>
     );

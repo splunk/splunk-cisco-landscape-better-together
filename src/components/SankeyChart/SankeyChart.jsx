@@ -32,24 +32,21 @@ const SankeyChart = ({ category }) => {
             setIsLoading(true)
             const data = await readJSONFile(category)
             const rows = buildRows(data)
+            const google = window['google']
 
-            if (window['google'] && rows) {
-                window['google'].charts.load('current', { 'packages': ['sankey'] });
-                window['google'].charts.setOnLoadCallback(drawChart(rows));
+            if (google && rows) {
+                google.charts.setOnLoadCallback(drawChart(rows, google));
             }
             setIsLoading(false)
         }
         getData()
     }, [])
 
+    const drawChart = (rows, google) => {
 
+        if (!google.visualization) return
 
-
-
-    const drawChart = (rows) => {
-        if (!window['google'].visualization) return
-
-        const data = new window['google'].visualization.DataTable();
+        const data = new google.visualization.DataTable();
         data.addColumn('string', 'From');
         data.addColumn('string', 'To');
         data.addColumn('number', 'Weight');
@@ -81,11 +78,9 @@ const SankeyChart = ({ category }) => {
         };
 
         // Instantiates and draws our chart, passing in some options.
-        const chart = new window['google'].visualization.Sankey(document.getElementById('cisco-splunk-sankey'));
+        const chart = new google.visualization.Sankey(document.getElementById('cisco-splunk-sankey'));
         chart.draw(data, options);
     }
-
-
 
     return (
         <div className="chart-container">

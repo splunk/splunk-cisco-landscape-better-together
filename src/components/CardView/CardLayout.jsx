@@ -4,7 +4,7 @@ import CardComponent from "./CardComponent";
 import { readJSONFile } from "../../utils/file";
 
 
-const CardLayout = ( {category} ) => {
+const CardLayout = ({ category }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const CardLayout = ( {category} ) => {
     return (
         <Grid container spacing={1} justifyContent="flex-start" alignItems="flex-start">
             {cardData.map((card, index) => (
-                <Grid item key={index}>
+                <Grid key={index}>
                     <CardComponent title={card.title} sections={card.sections} />
                 </Grid>
             ))}

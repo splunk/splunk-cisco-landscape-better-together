@@ -28,10 +28,8 @@ const SankeyChart = ({ category }) => {
     }
 
     useEffect(() => {
-
         const getData = async () => {
             setIsLoading(true)
-
             const data = await readJSONFile(category)
             const rows = buildRows(data)
 
@@ -41,12 +39,14 @@ const SankeyChart = ({ category }) => {
             }
             setIsLoading(false)
         }
-
         getData()
+    }, [])
 
-    }, [category])
 
-    function drawChart(rows) {
+
+
+
+    const drawChart = (rows) => {
         if (!window['google'].visualization) return
 
         const data = new window['google'].visualization.DataTable();
@@ -56,37 +56,25 @@ const SankeyChart = ({ category }) => {
         data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
         data.addRows(rows);
 
-        const colors = [
-            "#007CBA",
-            "#84D6EB",
-
-            "#C5E0F4",
-            "#1f69a5",
-            "#969ebc",
-
-        ];
 
         // Sets chart options.
         const options = {
-            // width: 1500,
             height: 500,
             sankey: {
                 node: {
                     label: {
-                        fontSize: 13.5,
-                        color: '#07243c',
+                        fontSize: 14,
+                        color: '#232f48',
                     },
                     interactivity: true,
-                    labelPadding: 10,     // Horizontal distance between the label and the node.
+                    labelPadding: 5,     // Horizontal distance between the label and the node.
                     nodePadding: 7,     // Vertical distance between nodes.
 
                 },
                 link: {
                     color: {
-                        fill: '#c7daee',     // Color of the link.
+                        fill: '#d8e1e4',     // Color of the link.
                     },
-                    // colorMode: 'source',
-                    // colors
                 },
             },
             tooltip: { isHtml: true }
@@ -96,6 +84,8 @@ const SankeyChart = ({ category }) => {
         const chart = new window['google'].visualization.Sankey(document.getElementById('cisco-splunk-sankey'));
         chart.draw(data, options);
     }
+
+
 
     return (
         <div className="chart-container">

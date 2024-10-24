@@ -1,5 +1,6 @@
 .chart-container {
     padding: 0 0.5rem;
+    width: 100%;
 }
 
 .tooltip-box {
@@ -10,4 +11,8 @@
 .tooltip-box p {
     margin: 0.5rem;
     font-size: 12px;
+}
+
+#cisco-splunk-sankey {
+    width: 100%;
 }

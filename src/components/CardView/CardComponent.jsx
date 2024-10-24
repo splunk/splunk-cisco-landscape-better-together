@@ -30,7 +30,7 @@ const CardComponent = ({ title, sections }) => {
                             onClick={() => handleExpandClick(section.sectionTitle)}
                             aria-expanded={expandedSection === section.sectionTitle}
                             aria-label="show more"
-                            style={{ justifyContent: 'flex-start' }} 
+                            style={{ justifyContent: 'flex-start' }}
                         >
                             <ExpandMoreIcon
                                 align='left'

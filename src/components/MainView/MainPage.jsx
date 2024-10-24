@@ -19,7 +19,7 @@ import { styled } from '@mui/system';
 const StyledBox = styled(Box)({
   position: 'relative',
   // Palette: https://coolors.co/01bbea-114f76-1b244b-8c125b-fc453f-fd6e0e
-  backgroundImage: 'linear-gradient(to bottom left, #01BBEA, #114F76 50%, #1B244B, #8C125B, #FC453F, #FD6E0E)',
+  backgroundImage: 'linear-gradient(to bottom left, #01BBEA, #114F76 40%, #1B244B, #8C125B, #FC453F, #FD6E0E)',
   display: 'flex',
   flexDirection: 'row',
   minHeight: '100vh',
@@ -107,7 +107,7 @@ export default function VerticalTabs() {
           <StyledTab label="Networking" icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
           <StyledTab label="Security" icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
           <StyledTab label="Collaboration" icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
-          <StyledTab label="Application" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
+          <StyledTab label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
         </StyledTabs>
       </Box>
       <Box sx={{ flexBasis: '80%', marginTop: '4%' }}>

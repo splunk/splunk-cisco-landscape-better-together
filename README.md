@@ -1,86 +1,65 @@
-# Splunk CIsco Landscape: Better Together
+# Splunk Cisco Landscape: Better Together
 
 Splunk and Cisco Landscape | products, apps, integrations, and overall better together story for a visual learner!
 
 
-# Getting Started with Create React App
+## Features
+* Tabs navigation to filter integrations per category: `Networking`, `Security`, `Collaboration` and `Application Performance`
+* Three layouts showcasing products integration per category
+    * Cards Layout
+    * Sankey Layout
+    * Flow Layout
+* Layout selection via `Settings`
+* Products integrations data is defined in a JSON file used for loading visualisations
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### JSON Structure: single integration
+To interact with our API, each integration should follow this JSON structure:
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+{
+    "category": "Networking",
+    "cisco_product": "Cisco Secure Firewall ASA",
+    "cisco_product_description": "The Cisco Secure Firewall ASA provides protection to devices within corporate networks and data centers of all sizes.",
+    "splunk_addon": "Splunk Add-on for Cisco Meraki",
+    "splunk_platform": "Splunk Cloud ",
+    "link": "https://splunkbase.splunk.com/app/5580",
+    "documentation": "https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon",
+    "description": "The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. The the Splunk Add-on for Cisco Meraki can collect the following data via the Cisco Meraki REST APIs: Configuration changes Organization security events Events from devices (such as access points, cameras, switches and security appliances)\n\nThe Splunk Add-on for Cisco Meraki provides the inputs and CIM-compatible knowledge to use with other Splunk apps, such as Splunk Enterprise Security and the Splunk App for PCI Compliance.",
+    "comments": ""
+},
+```
 
 
-
-## Contribute to this crowd sourced / open source style efforts
-
-👉 Instructions: TBD
+### Fields Description
+Fields are **ALL required**. Empty values may be accepted.
 
 
-## Inspiration: 
-- Jason Conger's Azure <--> Splunk Sanky diagram: JasonConger/splunk-azure-gdi
-- CNCF has a special place in my heart and their landscape feature is just amazing at navigating the ecosystem.
+| Field | Type | Description | Example Value |
+|:---:|---|---|---|
+| `category` | String | Available options: "Networking", "Security", "Collaboration", "Application Performance" | Networking |
+| `cisco_product` | String | Name of Cisco Product | Cisco Secure Firewall ASA |
+| `cisco_product_description` | String | Description of Cisco Product | This product provides protection to devices within corporate networks |
+| `splunk_addon` | String | Name of Splunk Add-On | Splunk Add-on for Cisco Meraki |
+| `splunk_platform` | String | Available options: "SOAR", "Splunk Cloud" | Splunk Cloud |
+| `link` | URL | Link to Splunkbase | https://splunkbase.splunk.com/app/5580 |
+| `documentation` | URL | Link to Add-On documentation | https://docs.splunk.com/Documentation/AddOns/released/Meraki/AboutAddon |
+| `description` | String | Description of Splunk Add-On | The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. |
+| `comments` | String | Eventual comments |  |
+
+## Usage
+Not yet publically available. We are still looking for the best fitting place for it.
+
+## Contributing
+Please read our [CONTRIBUTING.md](CONTRIBUTING.md) guidelines for details on how to contribute to this project.
+
+## License
+
+This project is licensed under the Apache 2.0 – see the [LICENSE](LICENSE) file for details.
+
+## Inspirations
+This project was inspired by several resources and projects:
+
+* [Jason Conger's Azure <--> Splunk Sanky diagram](https://jasonconger.com/splunk-azure-gdi/)
+* Cloud Native Computing Foundation (CNCF) has a special place in my heart and their [landscape feature](https://landscape.cncf.io/) is just amazing at navigating the ecosystem
+
+We appreciate the work of these individuals and communities that deeply influenced our design! :heart:

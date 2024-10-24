@@ -76,11 +76,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-## Contribute to this crowd sourced / open source style efforts
+## Contributing
+Please read our [CONTRIBUTING.md](CONTRIBUTING.md) guidelines for details on how to contribute to this project.
 
-👉 Instructions: TBD
 
+## Inspirations
+This project was inspired by several resources and projects:
 
-## Inspiration: 
-- Jason Conger's Azure <--> Splunk Sanky diagram: JasonConger/splunk-azure-gdi
-- CNCF has a special place in my heart and their landscape feature is just amazing at navigating the ecosystem.
+* [Jason Conger's Azure <--> Splunk Sanky diagram](https://jasonconger.com/splunk-azure-gdi/)
+* Cloud Native Computing Foundation (CNCF) has a special place in my heart and their [landscape feature](https://landscape.cncf.io/) is just amazing at navigating the ecosystem
+
+We appreciate the work of these individuals and communities that deeply influenced our design! :heart:

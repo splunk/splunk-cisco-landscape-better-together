@@ -86,7 +86,7 @@ function a11yProps(index) {
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-  const [selectedView, setSelectedView] = React.useState('Show cards layout');
+  const [selectedView, setSelectedView] = React.useState('Show Card Layout');
 
   const handleClickOpen = async () => {
     setOpen(true);
@@ -102,11 +102,11 @@ export default function VerticalTabs() {
 
   const getLayoutOptions = (category) => {
     switch(selectedView){
-      case 'Show cards layout':
+      case 'Show Card Layout':
         return <CardLayout category={category} />;
-      case 'Show sankey layout':
+      case 'Show Sankey Layout':
         return <SankeyChart category={category} />;
-      case 'Show Nodes layout':
+      case 'Show Flow Layout':
         return <NodeView category={category} />;  
       default:
         return <CardLayout category={category} />;
@@ -138,16 +138,16 @@ export default function VerticalTabs() {
         <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
           {/* Tab content */}
           <TabPanel value={value} index={0}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Networking" />) : (<SankeyChart category={'Networking'} />)}
+            {getLayoutOptions('Networking')}
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Security" />) : (<SankeyChart category={'Security'} />)}
+            {getLayoutOptions('Security')}
           </TabPanel>
           <TabPanel value={value} index={2}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Collaboration" />) : (<SankeyChart category={'Collaboration'} />)}
+            {getLayoutOptions('Collaboration')}
           </TabPanel>
           <TabPanel value={value} index={3}>
-            {selectedView === 'Show cards layout' ? (<CardLayout category="Application Performance" />) : (<SankeyChart category={'Application Performance'} />)}
+            {getLayoutOptions('Application Performance')}
           </TabPanel>
         </Box>
       </Box>

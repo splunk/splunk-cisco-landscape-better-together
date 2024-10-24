@@ -42,8 +42,8 @@ const NodeView = ({ category }) => {
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
-            width: '80vw', 
-            height: '80vh',
+            width: '70vw', 
+            height: '70vh',
         }}>
             {isLoading ? (
                 <div style={{ textAlign: 'center' }}>

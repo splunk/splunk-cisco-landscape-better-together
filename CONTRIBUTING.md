@@ -10,7 +10,7 @@
 ### Contributing New Products Integrations
 1. [Fork](https://guides.github.com/activities/forking/) the repository
 2. Create a [branch](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project#creating-a-branch-to-work-on)
-3. Edit the `public/data.json` file by adding a new entry for the opportune category. See [structure definition](./README.md#fields-description) on more details on expected values.
+3. Edit the `public/data.json` file by adding a new entry **for the opportune category**. See [structure definition](./README.md#fields-description) for more details on expected values.
 4. Thoroughly test your code
 5. Perform a pull request to the `main` branch of the repo
 

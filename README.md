@@ -28,7 +28,24 @@ Splunk and Cisco Landscape | products, apps, integrations, and overall better to
   </tr>
 </table>
 
-### JSON Structure: single integration
+## Usage
+This project is **not yet publically available**. We are still looking for the best fitting place for it.
+
+To run the app locally, please follow [instructions](CONTRIBUTING.md#development-environment-setup)
+
+## Technical Specifications
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Google Charts](https://img.shields.io/badge/Google%20Charts-E3E3E3?style=for-the-badge&logo=google&logoColor=4285F4)
+![React Flow](https://img.shields.io/badge/React%20Flow-FF0071?style=for-the-badge&logo=react&logoColor=black)
+![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+
+### Technologies Used
+- **React**: A JavaScript library for building user interfaces.
+- **Google Charts**: A powerful, simple to use, and free tool for data visualization.
+- **React Flow**: A library for building interactive node-based applications.
+- **MUI**: A popular React UI framework for building responsive web applications.
+
+### JSON Data Structure: single integration
 To interact with our API, each integration should follow this JSON structure:
 
 ```json
@@ -44,7 +61,6 @@ To interact with our API, each integration should follow this JSON structure:
     "comments": ""
 },
 ```
-
 
 ### Fields Description
 Fields are **ALL required**. Empty values may be accepted.
@@ -62,14 +78,11 @@ Fields are **ALL required**. Empty values may be accepted.
 | `description` | String | Description of Splunk Add-On | The Splunk Add-on for Cisco Meraki lets you monitor network and security events in your environment. |
 | `comments` | String | Eventual comments |  |
 
-## Usage
-Not yet publically available. We are still looking for the best fitting place for it.
 
 ## Contributing
 Please read our [CONTRIBUTING.md](CONTRIBUTING.md) guidelines for details on how to contribute to this project.
 
 ## License
-
 This project is licensed under the Apache 2.0 – see the [LICENSE](LICENSE) file for details.
 
 ## Inspirations

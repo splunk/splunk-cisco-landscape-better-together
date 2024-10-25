@@ -1,4 +1,4 @@
-# Splunk Cisco Landscape: Better Together
+# Cisco and Splunk Infographic Landscape
 
 Splunk and Cisco Landscape | products, apps, integrations, and overall better together story for a visual learner!
 

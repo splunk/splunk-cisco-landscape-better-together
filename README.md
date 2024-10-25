@@ -6,16 +6,16 @@ Splunk and Cisco Landscape | products, apps, integrations, and overall better to
 ## Features
 * Tabs navigation to filter integrations per category: `Networking`, `Security`, `Collaboration` and `Application Performance`
 * Three layouts showcasing products integration per category
-    * Cards Layout
+    * Card Layout
     * Sankey Layout
     * Flow Layout
 * Layout selection via `Settings`
-* Products integrations data is defined in a JSON file used for loading visualisations
+* Products integrations data is defined in a JSON file used for loading visualizations
 
 <table>
     <tr>
         <td colspan="3">
-            <img src="docs/images/CSIL_cards.png"><b>Cards Layout</b>
+            <img src="docs/images/CSIL_cards.png"><b>Card Layout</b>
         </td>
   </tr>
   <tr>

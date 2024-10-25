@@ -12,6 +12,22 @@ Splunk and Cisco Landscape | products, apps, integrations, and overall better to
 * Layout selection via `Settings`
 * Products integrations data is defined in a JSON file used for loading visualisations
 
+<table>
+    <tr>
+        <td colspan="3">
+            <img src="docs/images/CSIL_cards.png"><b>Cards Layout</b>
+        </td>
+  </tr>
+  <tr>
+    <td>
+        <img src="docs/images/CSIL_sankey.png"><b>Sankey Layout</b>
+    </td>
+    <td>
+        <img src="docs/images/CSIL_flow.png"><b>Flow Layout</b>
+    </td>
+  </tr>
+</table>
+
 ### JSON Structure: single integration
 To interact with our API, each integration should follow this JSON structure:
 

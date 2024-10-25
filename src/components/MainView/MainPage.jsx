@@ -151,7 +151,7 @@ export default function VerticalTabs() {
       </Box>
       {/* Logo */}
       <Box sx={{ position: "relative", bottom: '10px', width: "100%" }}>
-        <img src={ciscoLogo} alt="Logo" style={{ width: '400px', height: 'auto' }} />
+        <img src={ciscoLogo} alt="Logo" style={{ width: '15%', float: 'left', 'margin-left': '3%', height: 'auto' }} />
       </Box>
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>

@@ -20,7 +20,6 @@ import NodeView from '../NodeView/NodeView';
 import Fuse from 'fuse.js'
 import { TextField } from '@mui/material';
 import { readJSONFile } from '../../utils/file';
-import './MainPage.css'
 import { cyan } from '@mui/material/colors';
 
 const StyledBox = styled(Box)({

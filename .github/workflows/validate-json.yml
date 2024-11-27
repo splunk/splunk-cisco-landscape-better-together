@@ -5,14 +5,24 @@ on:
     branches:
       - "test-workflow"
     paths:
-      - data.json
+      - public/data.json
 jobs: 
   validate-json: 
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: List workspace files
+        run: ls -R
+
+      - name: Display public/data.json content
+        run: cat public/data.json
+
       - name: Validate JSON formatting
         run: |
-          jq . data.json > /dev/null 2>&1
+          if ! jq . public/data.json > /dev/null 2>&1; then
+            echo "Error: public/data.json is not valid JSON."
+            exit 1
+          fi
         shell: bash

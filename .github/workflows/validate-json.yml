@@ -1,6 +1,6 @@
 name: Validate JSON
 on: 
-  workflow_dispatch:
+  pull_request:
   push:
     branches:
       - "test-workflow"

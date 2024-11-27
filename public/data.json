@@ -214,6 +214,6 @@
             "documentation": "https://github.com/splunk/splunk_TA_AppDynamics/tree/master",
             "description": "The Splunk Add-on for AppDynamics enables you to easily configure data inputs to pull data from AppDynamics' REST APIs. ",
             "comments": ""
-        }
+        
     ]
 }

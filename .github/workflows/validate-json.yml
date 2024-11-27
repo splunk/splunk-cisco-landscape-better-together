@@ -1,5 +1,6 @@
 name: Validate JSON
 on: 
+  workflow_dispatch:
   push:
     paths:
       - data.json

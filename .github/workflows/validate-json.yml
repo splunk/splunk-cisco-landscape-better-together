@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - "test-workflow"
+      - "main"
     paths:
       - public/data.json
 jobs: 

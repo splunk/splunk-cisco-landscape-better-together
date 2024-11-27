@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Validate JSON
-        uses: docker://orrosenblatt/validate-json-action:latest
-        with:
-          file: data.json
+      - name: Validate JSON formatting
+        run: |
+          jq . data.json > /dev/null 2>&1
+        shell: bash

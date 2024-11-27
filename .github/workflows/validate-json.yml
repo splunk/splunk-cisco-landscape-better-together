@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: Checkout repository
-        uses: actions/checkout@v3
+         uses: actions/checkout@v3
 
-      - name: List workspace files
-        run: ls -R
+       - name: List workspace files
+         run: ls -R
 
-      - name: Display public/data.json content
-        run: cat public/data.json
+       - name: Display public/data.json content
+         run: cat public/data.json
 
-      - name: Validate JSON formatting
-        run: |
+       - name: Validate JSON formatting
+         run: |
           if ! jq . public/data.json > /dev/null 2>&1; then
             echo "Error: public/data.json is not valid JSON."
             exit 1
           fi
-        shell: bash
+         shell: bash

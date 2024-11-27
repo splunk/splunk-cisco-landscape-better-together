@@ -2,6 +2,8 @@ name: Validate JSON
 on: 
   workflow_dispatch:
   push:
+    branches:
+      - "test-workflow"
     paths:
       - data.json
 jobs: 

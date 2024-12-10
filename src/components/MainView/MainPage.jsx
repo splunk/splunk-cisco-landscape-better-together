@@ -20,7 +20,6 @@ import NodeView from '../NodeView/NodeView';
 import Fuse from 'fuse.js'
 import { TextField } from '@mui/material';
 import { readJSONFile } from '../../utils/file';
-import { cyan } from '@mui/material/colors';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -93,7 +92,7 @@ export default function VerticalTabs() {
   const [originalData, setOriginalData] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('Networking')
   const [searchValue, setSearchValue] = useState('')
-  const color = cyan[50]
+
 
   const handleClickOpen = async () => {
     setOpen(true);
@@ -133,6 +132,8 @@ export default function VerticalTabs() {
 
     const options = {
       includeScore: false,
+      includeMatches: true,
+      minMatchCharLength: 3,
       keys: ["cisco_product"]
     }
 
@@ -189,8 +190,18 @@ export default function VerticalTabs() {
             <StyledTab onClick={() => handleTabClick("Application Performance")} label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
           </StyledTabs>
         </Box>
-        <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
-          <TextField style={{ width: 500 }} onChange={onInputChange} id="standard-basic" label="Search" variant="standard" color={color} value={searchValue} />
+        <Box className="custom-box" sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
+          <TextField
+            style={{ width: 600 }} color='black'
+            onChange={onInputChange} className='search-field' id="standard-basic"
+            label="Search" variant="standard" value={searchValue}
+            sx={{
+              '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
+              '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
+              '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' }
+            }}
+
+          />
           {/* Tab content */}
           <TabPanel value={value} index={0}>
             {getLayoutOptions('Networking')}

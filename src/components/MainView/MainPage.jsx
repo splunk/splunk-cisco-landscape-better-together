@@ -199,7 +199,8 @@ export default function VerticalTabs() {
               sx={{
                 '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
                 '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
-                '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' }
+                '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' },
+                '& .MuiInput-underline:hover:after': { borderBottomColor: '#d4d2d2' },
               }}
 
             />

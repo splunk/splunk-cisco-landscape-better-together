@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -17,6 +17,9 @@ import CardLayout from '../CardView/CardLayout';
 import { styled } from '@mui/system';
 import ciscoLogo from '../../ciscoLogo.png'
 import NodeView from '../NodeView/NodeView';
+import Fuse from 'fuse.js'
+import { TextField } from '@mui/material';
+import { readJSONFile } from '../../utils/file';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -82,9 +85,14 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
-  const [selectedView, setSelectedView] = React.useState('Show Card Layout');
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [selectedView, setSelectedView] = useState('Show Card Layout');
+  const [currentData, setCurrentData] = useState([])
+  const [originalData, setOriginalData] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('Networking')
+  const [searchValue, setSearchValue] = useState('')
+
 
   const handleClickOpen = async () => {
     setOpen(true);
@@ -98,18 +106,70 @@ export default function VerticalTabs() {
     setValue(newValue);
   };
 
+  const getData = async (category) => {
+    const data = await readJSONFile(category)
+    setCurrentData(data)
+    setOriginalData(data)
+  }
+
+  const handleTabClick = async (category) => {
+    setSearchValue('')
+    setSelectedCategory(category)
+    getData(category)
+  }
+
+  const onInputChange = async (e) => {
+    const value = e.target.value;
+    setSearchValue(value)
+
+    //length = 0 - reset data
+    if (!value) {
+      getData(selectedCategory)
+    }
+
+    //don't perform the search if the search string is less than 3 characters
+    if (value.length < 3) return
+
+    const options = {
+      threshold: 0.3,
+      location: 0,
+      distance: 100,
+      includeMatches: true,
+      includeScore: true,
+      useExtendedSearch: true,
+      keys: ["cisco_product"]
+    }
+
+    const fuse = new Fuse(originalData, options)
+
+    const result = fuse.search(value)
+
+    const newData = result?.map(res => res.item) || []
+    setCurrentData(newData)
+  }
+
   const getLayoutOptions = (category) => {
-    switch(selectedView){
+    switch (selectedView) {
       case 'Show Card Layout':
-        return <CardLayout category={category} />;
+        return <CardLayout category={category} data={currentData} />;
       case 'Show Sankey Layout':
         return <SankeyChart category={category} />;
       case 'Show Flow Layout':
-        return <NodeView category={category} />;  
+        return <NodeView category={category} />;
       default:
         return <CardLayout category={category} />;
     }
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await readJSONFile(selectedCategory)
+      setCurrentData(data)
+      setOriginalData(data)
+    }
+    fetchData()
+  }, [])
 
   return (
     <StyledBox>
@@ -127,13 +187,27 @@ export default function VerticalTabs() {
             value={value}
             onChange={handleChange}
           >
-            <StyledTab label="Networking" icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
-            <StyledTab label="Security" icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
-            <StyledTab label="Collaboration" icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
-            <StyledTab label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
+            <StyledTab onClick={() => handleTabClick("Networking")} label="Networking" icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
+            <StyledTab onClick={() => handleTabClick("Security")} label="Security" icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
+            <StyledTab onClick={() => handleTabClick("Collaboration")} label="Collaboration" icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
+            <StyledTab onClick={() => handleTabClick("Application Performance")} label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
           </StyledTabs>
         </Box>
-        <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
+        <Box className="custom-box" sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
+          {selectedView === "Show Card Layout" && (
+            <TextField
+              style={{ width: 600 }} color='black'
+              onChange={onInputChange} className='search-field' id="standard-basic"
+              label="Search" variant="standard" value={searchValue}
+              sx={{
+                '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
+                '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
+                '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' },
+                '& .MuiInput-underline:hover:after': { borderBottomColor: '#d4d2d2' },
+              }}
+
+            />
+          )}
           {/* Tab content */}
           <TabPanel value={value} index={0}>
             {getLayoutOptions('Networking')}

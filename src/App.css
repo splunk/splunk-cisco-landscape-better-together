@@ -32,11 +32,27 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.react-flow__attribution{
+.react-flow__attribution {
   display: none !important;
+}
+
+/* text color when user is typing */
+#standard-basic {
+  color: #d3d1d1;
+}
+
+/* text color when input is inactive */
+.custom-box .MuiInputLabel-standard {
+  color: #cccbcb;
+}
+
+/* text color for the header text of the input when it is active */
+.custom-box .Mui-focused {
+  color: #cccbcb;
 }

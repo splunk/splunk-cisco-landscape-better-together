@@ -131,9 +131,12 @@ export default function VerticalTabs() {
     if (value.length < 3) return
 
     const options = {
-      includeScore: false,
+      threshold: 0.3,
+      location: 0,
+      distance: 100,
       includeMatches: true,
-      minMatchCharLength: 3,
+      includeScore: true,
+      useExtendedSearch: true,
       keys: ["cisco_product"]
     }
 

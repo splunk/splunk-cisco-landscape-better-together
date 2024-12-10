@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid2";
 import CardComponent from "./CardComponent";
-import { readJSONFile } from "../../utils/file";
 
 
-const CardLayout = ({ category, data }) => {
-    // const [data, setData] = useState(null);
-
-    useEffect(() => {
-        // const getData = async () => {
-        //     try {
-        //         const data = await readJSONFile()
-        //         setData(data);
-        //     } catch (error) {
-        //         console.error("Error reading data", error);
-        //     }
-        // }
-        // getData();
-    }, [])
+const CardLayout = ({ data }) => {
 
     if (!data) {
         return <div style={{ color: 'rgb(250, 250, 250)' }}>Loading...</div>;
     }
 
-    // const filteredData = data[category];
 
     const convertData = (data) => {
         const groupedData = data.reduce((acc, entry) => {

@@ -191,17 +191,19 @@ export default function VerticalTabs() {
           </StyledTabs>
         </Box>
         <Box className="custom-box" sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
-          <TextField
-            style={{ width: 600 }} color='black'
-            onChange={onInputChange} className='search-field' id="standard-basic"
-            label="Search" variant="standard" value={searchValue}
-            sx={{
-              '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
-              '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
-              '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' }
-            }}
+          {selectedView === "Show Card Layout" && (
+            <TextField
+              style={{ width: 600 }} color='black'
+              onChange={onInputChange} className='search-field' id="standard-basic"
+              label="Search" variant="standard" value={searchValue}
+              sx={{
+                '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
+                '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
+                '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' }
+              }}
 
-          />
+            />
+          )}
           {/* Tab content */}
           <TabPanel value={value} index={0}>
             {getLayoutOptions('Networking')}

@@ -18,8 +18,10 @@ import { styled } from '@mui/system';
 import ciscoLogo from '../../ciscoLogo.png'
 import NodeView from '../NodeView/NodeView';
 import Fuse from 'fuse.js'
-import { TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 import { readJSONFile } from '../../utils/file';
+import { useDebouncedCallback } from 'use-debounce';
+import { Search } from '@mui/icons-material';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -118,46 +120,52 @@ export default function VerticalTabs() {
     getData(category)
   }
 
-  const onInputChange = async (e) => {
-    const value = e.target.value;
-    setSearchValue(value)
-
-    //length = 0 - reset data
-    if (!value) {
-      getData(selectedCategory)
-    }
-
-    //don't perform the search if the search string is less than 3 characters
-    if (value.length < 3) return
-
-    const options = {
-      threshold: 0.3,
-      location: 0,
-      distance: 100,
-      includeMatches: true,
-      includeScore: true,
-      useExtendedSearch: true,
-      keys: ["cisco_product"]
-    }
-
-    const fuse = new Fuse(originalData, options)
-
-    const result = fuse.search(value)
-
-    const newData = result?.map(res => res.item) || []
-    setCurrentData(newData)
+  const onInputChange = (value) => {
+    setSearchValue(value);
+    search(value)
   }
+
+  const search = useDebouncedCallback(
+    (value) => {
+      if (!value) {
+        getData(selectedCategory)
+      }
+
+      //don't perform the search if the search string is less than 3 characters
+      if (value.length < 3) return
+
+      const options = {
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        includeMatches: true,
+        includeScore: true,
+        useExtendedSearch: true,
+        keys: ["cisco_product", "splunk_addon", "splunk_platform"]
+      }
+
+      const fuse = new Fuse(originalData, options)
+
+      const result = fuse.search(value)
+
+      const newData = result?.map(res => res.item) || []
+      setCurrentData(newData)
+    },
+    250
+  );
+
+
 
   const getLayoutOptions = (category) => {
     switch (selectedView) {
       case 'Show Card Layout':
-        return <CardLayout category={category} data={currentData} />;
+        return <CardLayout data={currentData} />;
       case 'Show Sankey Layout':
-        return <SankeyChart category={category} />;
+        return <SankeyChart data={currentData} />;
       case 'Show Flow Layout':
-        return <NodeView category={category} />;
+        return <NodeView data={currentData} />;
       default:
-        return <CardLayout category={category} />;
+        return <CardLayout data={currentData} />;
     }
   };
 
@@ -172,12 +180,12 @@ export default function VerticalTabs() {
   }, [])
 
   return (
-    <StyledBox>
+    <StyledBox sx={{ width: '100%' }}>
       <Box
         sx={{
           display: 'flex',
           flexGrow: 1,
-          width: '100%'
+          width: '100%',
         }}
       >
         <Box sx={{ flexBasis: '20%' }}>
@@ -194,20 +202,26 @@ export default function VerticalTabs() {
           </StyledTabs>
         </Box>
         <Box className="custom-box" sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
-          {selectedView === "Show Card Layout" && (
-            <TextField
-              style={{ width: 600 }} color='black'
-              onChange={onInputChange} className='search-field' id="standard-basic"
-              label="Search" variant="standard" value={searchValue}
-              sx={{
-                '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
-                '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
-                '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' },
-                '& .MuiInput-underline:hover:after': { borderBottomColor: '#d4d2d2' },
-              }}
-
-            />
-          )}
+          <TextField
+            style={{ width: 350, display: 'flex', marginLeft: '2.5rem', marginBottom: '1rem' }} color='black'
+            onChange={(e) => onInputChange(e.target.value)} className='search-field' id="standard-basic"
+            label="Search for a product..." variant="standard" value={searchValue}
+            sx={{
+              '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
+              '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
+              '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' },
+              '& .MuiInput-underline:hover:after': { borderBottomColor: '#d4d2d2' },
+            }}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <Search sx={{ fill: '#cccbcb' }} />
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
           {/* Tab content */}
           <TabPanel value={value} index={0}>
             {getLayoutOptions('Networking')}

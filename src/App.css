@@ -56,3 +56,8 @@
 .custom-box .Mui-focused {
   color: #cccbcb;
 }
+
+/* keep the border bottom of the input white */
+div.custom-box div.MuiFormControl-root div.MuiInput-root:before {
+  border-bottom: 1px solid #cccbcb;
+}

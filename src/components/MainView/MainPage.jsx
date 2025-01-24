@@ -31,7 +31,7 @@ const StyledBox = styled(Box)({
   flexDirection: 'column',
   minHeight: '100vh',
   alignItems: 'flex-start',
-  maxWidth: '100vw',
+  width: '100%',
 });
 
 const StyledTabs = styled(Tabs)({
@@ -50,6 +50,49 @@ const StyledTab = styled(Tab)({
   fontSize: '20px',
   '&.Mui-selected': {
     color: '#fafafa'
+  }
+});
+
+
+const ContentBox = styled(Box, { shouldForwardProp: (prop) => prop !== 'selectedView' })(
+  ({ selectedView }) => ({
+    flexBasis: '80%',
+    width: props => props.selectedView === 'Show sankey layout' ? '100%' : 'auto',
+    padding: '16px',
+
+    '& #standard-basic, & .MuiInputLabel-standard, & .Mui-focused': {
+      color: '#fafafa',
+    },
+
+    '& div.MuiFormControl-root div.MuiInput-root:before': {
+      borderBottom: '1px solid #fafafa',
+    }
+  })
+);
+
+
+const SearchTextField = styled(TextField)({
+  width: 350,
+  display: 'flex',
+  margin: '0 0 1rem 2.5rem',
+
+  '& .MuiInput-underline:before': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:hover:before': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:hover:after': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiFormLabel-root.Mui-focused': {
+    color: '#fafafa'
+  },
+  '& svg': {
+    fill: '#fafafa'
   }
 });
 
@@ -180,7 +223,7 @@ export default function VerticalTabs() {
   }, [])
 
   return (
-    <StyledBox sx={{ width: '100%' }}>
+    <StyledBox>
       <Box
         sx={{
           display: 'flex',
@@ -201,22 +244,18 @@ export default function VerticalTabs() {
             <StyledTab onClick={() => handleTabClick("Application Performance")} label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
           </StyledTabs>
         </Box>
-        <Box className="custom-box" sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
-          <TextField
-            style={{ width: 350, display: 'flex', marginLeft: '2.5rem', marginBottom: '1rem' }} color='black'
-            onChange={(e) => onInputChange(e.target.value)} className='search-field' id="standard-basic"
-            label="Search for a product..." variant="standard" value={searchValue}
-            sx={{
-              '& .MuiInput-underline:before': { borderBottomColor: '#cccbcb' },
-              '& .MuiInput-underline:after': { borderBottomColor: '#cccbcb' },
-              '& .MuiInput-underline:hover:before': { borderBottomColor: '#d4d2d2' },
-              '& .MuiInput-underline:hover:after': { borderBottomColor: '#d4d2d2' },
-            }}
+        <ContentBox selectedView={selectedView}>
+          <SearchTextField
+            id="standard-basic"
+            label="Search for a product..."
+            variant="standard"
+            onChange={(e) => onInputChange(e.target.value)}
+            value={searchValue}
             slotProps={{
               input: {
                 endAdornment: (
                   <InputAdornment position="start">
-                    <Search sx={{ fill: '#cccbcb' }} />
+                    <Search />
                   </InputAdornment>
                 ),
               },
@@ -235,11 +274,11 @@ export default function VerticalTabs() {
           <TabPanel value={value} index={3}>
             {getLayoutOptions('Application Performance')}
           </TabPanel>
-        </Box>
+        </ContentBox>
       </Box>
       {/* Logo */}
       <Box sx={{ position: "relative", bottom: '10px', width: "100%" }}>
-        <img src={ciscoLogo} alt="Logo" style={{ width: '15%', float: 'left', 'margin-left': '3%', height: 'auto' }} />
+        <img src={ciscoLogo} alt="Logo" style={{ width: '15%', float: 'left', marginLeft: '3%', height: 'auto' }} />
       </Box>
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>
@@ -253,6 +292,6 @@ export default function VerticalTabs() {
         />
         <InfoPopUp />
       </Box>
-    </StyledBox>
+    </StyledBox >
   );
 }

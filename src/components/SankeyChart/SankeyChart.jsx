@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { readJSONFile } from "../../utils/file";
 import './SankeyChart.css'
 
-const SankeyChart = ({ category }) => {
+const SankeyChart = ({ data }) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -12,7 +11,7 @@ const SankeyChart = ({ category }) => {
                 </div>`
     }
 
-    const buildRows = (data) => {
+    const buildRows = () => {
         const rows = []
 
         if (!Array.isArray(data)) return
@@ -28,31 +27,33 @@ const SankeyChart = ({ category }) => {
     }
 
     useEffect(() => {
-        const getData = async () => {
-            setIsLoading(true)
-            const data = await readJSONFile(category)
-            const rows = buildRows(data)
-            const google = window['google']
+        setIsLoading(true)
+        const rows = buildRows()
+        const google = window['google']
 
-            if (google && rows) {
-                google.charts.setOnLoadCallback(drawChart(rows, google));
-            }
-            setIsLoading(false)
+        if (google && rows) {
+            google.charts.setOnLoadCallback(drawChart(rows, google));
         }
-        getData()
-    }, [])
+        setIsLoading(false)
+    }, [data])
 
     const drawChart = (rows, google) => {
 
-        if (!google.visualization) return
+        const element = document.getElementById('cisco-splunk-sankey')
+
+        if (!element) return
+
+        element.innerHTML = ''
+
+        if (!google.visualization || !rows.length) return
 
         const data = new google.visualization.DataTable();
+
         data.addColumn('string', 'From');
         data.addColumn('string', 'To');
         data.addColumn('number', 'Weight');
         data.addColumn({ type: 'string', role: 'tooltip', p: { html: true } });
         data.addRows(rows);
-
 
         // Sets chart options.
         const options = {
@@ -78,7 +79,7 @@ const SankeyChart = ({ category }) => {
         };
 
         // Instantiates and draws our chart, passing in some options.
-        const chart = new google.visualization.Sankey(document.getElementById('cisco-splunk-sankey'));
+        const chart = new google.visualization.Sankey(element);
         chart.draw(data, options);
     }
 

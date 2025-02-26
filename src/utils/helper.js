@@ -97,8 +97,7 @@ const generateGraph = (result) => {
 }
 
 
-export const getNodeDataForCategory = async (category) => {
-    const data = await readJSONFile(category);
+export const getNodeDataForCategory = (data) => {
     const result = extractNodeLevelData(data);
     return generateGraph(result);
 }

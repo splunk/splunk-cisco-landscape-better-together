@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -17,6 +17,11 @@ import CardLayout from '../CardView/CardLayout';
 import { styled } from '@mui/system';
 import ciscoLogo from '../../ciscoLogo.png'
 import NodeView from '../NodeView/NodeView';
+import Fuse from 'fuse.js'
+import { InputAdornment, TextField } from '@mui/material';
+import { readJSONFile } from '../../utils/file';
+import { useDebouncedCallback } from 'use-debounce';
+import { Search } from '@mui/icons-material';
 
 const StyledBox = styled(Box)({
   position: 'relative',
@@ -26,7 +31,7 @@ const StyledBox = styled(Box)({
   flexDirection: 'column',
   minHeight: '100vh',
   alignItems: 'flex-start',
-  maxWidth: '100vw',
+  width: '100%',
 });
 
 const StyledTabs = styled(Tabs)({
@@ -45,6 +50,49 @@ const StyledTab = styled(Tab)({
   fontSize: '20px',
   '&.Mui-selected': {
     color: '#fafafa'
+  }
+});
+
+
+const ContentBox = styled(Box, { shouldForwardProp: (prop) => prop !== 'selectedView' })(
+  ({ selectedView }) => ({
+    flexBasis: '80%',
+    width: props => props.selectedView === 'Show sankey layout' ? '100%' : 'auto',
+    padding: '16px',
+
+    '& #standard-basic, & .MuiInputLabel-standard, & .Mui-focused': {
+      color: '#fafafa',
+    },
+
+    '& div.MuiFormControl-root div.MuiInput-root:before': {
+      borderBottom: '1px solid #fafafa',
+    }
+  })
+);
+
+
+const SearchTextField = styled(TextField)({
+  width: 350,
+  display: 'flex',
+  margin: '0 0 1rem 2.5rem',
+
+  '& .MuiInput-underline:before': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:hover:before': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiInput-underline:hover:after': {
+    borderBottomColor: '#fafafa',
+  },
+  '& .MuiFormLabel-root.Mui-focused': {
+    color: '#fafafa'
+  },
+  '& svg': {
+    fill: '#fafafa'
   }
 });
 
@@ -82,9 +130,14 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
-  const [selectedView, setSelectedView] = React.useState('Show Card Layout');
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [selectedView, setSelectedView] = useState('Show Card Layout');
+  const [currentData, setCurrentData] = useState([])
+  const [originalData, setOriginalData] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('Networking')
+  const [searchValue, setSearchValue] = useState('')
+
 
   const handleClickOpen = async () => {
     setOpen(true);
@@ -98,18 +151,76 @@ export default function VerticalTabs() {
     setValue(newValue);
   };
 
+  const getData = async (category) => {
+    const data = await readJSONFile(category)
+    setCurrentData(data)
+    setOriginalData(data)
+  }
+
+  const handleTabClick = async (category) => {
+    setSearchValue('')
+    setSelectedCategory(category)
+    getData(category)
+  }
+
+  const onInputChange = (value) => {
+    setSearchValue(value);
+    search(value)
+  }
+
+  const search = useDebouncedCallback(
+    (value) => {
+      if (!value) {
+        getData(selectedCategory)
+      }
+
+      //don't perform the search if the search string is less than 3 characters
+      if (value.length < 3) return
+
+      const options = {
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        includeMatches: true,
+        includeScore: true,
+        useExtendedSearch: true,
+        keys: ["cisco_product", "splunk_addon", "splunk_platform"]
+      }
+
+      const fuse = new Fuse(originalData, options)
+
+      const result = fuse.search(value)
+
+      const newData = result?.map(res => res.item) || []
+      setCurrentData(newData)
+    },
+    250
+  );
+
+
+
   const getLayoutOptions = (category) => {
-    switch(selectedView){
+    switch (selectedView) {
       case 'Show Card Layout':
-        return <CardLayout category={category} />;
+        return <CardLayout data={currentData} />;
       case 'Show Sankey Layout':
-        return <SankeyChart category={category} />;
+        return <SankeyChart data={currentData} />;
       case 'Show Flow Layout':
-        return <NodeView category={category} />;  
+        return <NodeView data={currentData} />;
       default:
-        return <CardLayout category={category} />;
+        return <CardLayout data={currentData} />;
     }
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await readJSONFile(selectedCategory)
+      setCurrentData(data)
+      setOriginalData(data)
+    }
+    fetchData()
+  }, [])
 
   return (
     <StyledBox>
@@ -117,7 +228,7 @@ export default function VerticalTabs() {
         sx={{
           display: 'flex',
           flexGrow: 1,
-          width: '100%'
+          width: '100%',
         }}
       >
         <Box sx={{ flexBasis: '20%' }}>
@@ -127,13 +238,29 @@ export default function VerticalTabs() {
             value={value}
             onChange={handleChange}
           >
-            <StyledTab label="Networking" icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
-            <StyledTab label="Security" icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
-            <StyledTab label="Collaboration" icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
-            <StyledTab label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
+            <StyledTab onClick={() => handleTabClick("Networking")} label="Networking" icon={<HubIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(0)} />
+            <StyledTab onClick={() => handleTabClick("Security")} label="Security" icon={<SecurityIcon sx={{ fontSize: '2.5rem' }} />} {...a11yProps(1)} />
+            <StyledTab onClick={() => handleTabClick("Collaboration")} label="Collaboration" icon={<GroupsIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(2)} />
+            <StyledTab onClick={() => handleTabClick("Application Performance")} label="Application Performance" icon={<SpeedIcon sx={{ fontSize: '3rem' }} />} {...a11yProps(3)} />
           </StyledTabs>
         </Box>
-        <Box sx={{ flexBasis: '80%', marginTop: '4%', width: `${selectedView === 'Show sankey layout' ? '100%' : 'auto'}` }}>
+        <ContentBox selectedView={selectedView}>
+          <SearchTextField
+            id="standard-basic"
+            label="Search for a product..."
+            variant="standard"
+            onChange={(e) => onInputChange(e.target.value)}
+            value={searchValue}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
           {/* Tab content */}
           <TabPanel value={value} index={0}>
             {getLayoutOptions('Networking')}
@@ -147,11 +274,11 @@ export default function VerticalTabs() {
           <TabPanel value={value} index={3}>
             {getLayoutOptions('Application Performance')}
           </TabPanel>
-        </Box>
+        </ContentBox>
       </Box>
       {/* Logo */}
       <Box sx={{ position: "relative", bottom: '10px', width: "100%" }}>
-        <img src={ciscoLogo} alt="Logo" style={{ width: '15%', float: 'left', 'margin-left': '3%', height: 'auto' }} />
+        <img src={ciscoLogo} alt="Logo" style={{ width: '15%', float: 'left', marginLeft: '3%', height: 'auto' }} />
       </Box>
       {/* Setting and info pop up */}
       <Box sx={{ position: 'absolute', top: 0, right: 0, padding: 1 }}>
@@ -165,6 +292,6 @@ export default function VerticalTabs() {
         />
         <InfoPopUp />
       </Box>
-    </StyledBox>
+    </StyledBox >
   );
 }

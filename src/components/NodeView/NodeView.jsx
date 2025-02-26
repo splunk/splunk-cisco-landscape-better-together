@@ -15,27 +15,18 @@ const edgeTypes = {
     customEdge: CustomEdge,
 };
 
-const NodeView = ({ category }) => {
+const NodeView = ({ data }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const data = await getNodeDataForCategory(category);
-                setNodes(data.nodes);
-                setEdges(data.links);
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [category]);
+        setIsLoading(true);
+        const result = getNodeDataForCategory(data);
+        setNodes(result.nodes);
+        setEdges(result.links);
+        setIsLoading(false);
+    }, [data]);
 
     return (
         <div style={{
